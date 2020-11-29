@@ -10,17 +10,12 @@ using System.Windows.Forms;
 
 namespace Cinema_booking_RPCYYH
 {
-    public partial class Form1 : Form
+    public partial class UserControl_Movies : UserControl
     {
-        CinemaEntities context = new CinemaEntities();
-        public Form1()
+        public UserControl_Movies()
         {
             InitializeComponent();
-            this.TopMost = true;
-            this.WindowState = FormWindowState.Maximized;
         }
-
-       
 
         private void splitContainer1_Panel1_Paint(object sender, PaintEventArgs e)
         {
