@@ -66,6 +66,24 @@ namespace Cinema_booking_RPCYYH
             labelSeatNumber.Text = countFreeSeats.ToString();
         }
 
+        private void btnSeats_Click(object sender, EventArgs e)
+        {
+            DateTime selectedTime = (DateTime)cboxTime.SelectedItem;
+            Movie selectedMovie = (Movie)cboxMovie.SelectedItem;
+            int selectedShowID = (from x in context.Movie_Show
+                                   where x.Movie_FK == selectedMovie.Movie_ID
+                                   && x.StartTime == selectedTime
+                                   select x.Movie_Show_ID).FirstOrDefault();
+            string selectedMovieName = selectedMovie.MovieName;
+            DateTime selectedShowTime = selectedTime;
+
+            //MessageBox.Show(selectedShowID+" "+selectedMovieName+" "+selectedShowTime);
+
+            this.Hide();
+            SeatBooking form2 = new SeatBooking(selectedShowID, selectedMovieName, selectedShowTime);
+            form2.ShowDialog();
+        }
+
 
         /*private void searchMovie()
         {

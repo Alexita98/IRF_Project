@@ -96,6 +96,7 @@ namespace Cinema_booking_RPCYYH
             this.cboxTime.Name = "cboxTime";
             this.cboxTime.Size = new System.Drawing.Size(234, 28);
             this.cboxTime.TabIndex = 10;
+            this.cboxTime.Text = "Iőpontok";
             this.cboxTime.SelectedIndexChanged += new System.EventHandler(this.cboxTime_SelectedIndexChanged);
             // 
             // labelSeatNumber
@@ -144,6 +145,7 @@ namespace Cinema_booking_RPCYYH
             this.cboxMovie.Name = "cboxMovie";
             this.cboxMovie.Size = new System.Drawing.Size(234, 28);
             this.cboxMovie.TabIndex = 9;
+            this.cboxMovie.Text = "Filmek";
             this.cboxMovie.SelectedIndexChanged += new System.EventHandler(this.cboxMovie_SelectedIndexChanged);
             // 
             // btnSeats
@@ -155,6 +157,7 @@ namespace Cinema_booking_RPCYYH
             this.btnSeats.TabIndex = 8;
             this.btnSeats.Text = "Hely Foglalás";
             this.btnSeats.UseVisualStyleBackColor = false;
+            this.btnSeats.Click += new System.EventHandler(this.btnSeats_Click);
             // 
             // txtboxTitle
             // 
@@ -162,7 +165,7 @@ namespace Cinema_booking_RPCYYH
             this.txtboxTitle.Name = "txtboxTitle";
             this.txtboxTitle.Size = new System.Drawing.Size(321, 26);
             this.txtboxTitle.TabIndex = 14;
-            this.txtboxTitle.Text = "Title";
+            this.txtboxTitle.Text = "Kereső";
             // 
             // cboxYear
             // 
