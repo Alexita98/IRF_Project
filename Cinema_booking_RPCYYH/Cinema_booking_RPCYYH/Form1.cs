@@ -16,15 +16,11 @@ namespace Cinema_booking_RPCYYH
         public Form1()
         {
             InitializeComponent();
-            this.TopMost = true;
-            this.WindowState = FormWindowState.Maximized;
+           /* this.TopMost = true;
+            this.WindowState = FormWindowState.Maximized;*/
+
+            
         }
 
-       
-
-        private void splitContainer1_Panel1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
     }
 }
