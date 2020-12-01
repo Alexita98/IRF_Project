@@ -73,6 +73,9 @@
     <Compile Include="Booking.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Chair.cs" />
+    <Compile Include="CinemaHall.cs" />
+    <Compile Include="CinemaScreen.cs" />
     <Compile Include="Customer.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
