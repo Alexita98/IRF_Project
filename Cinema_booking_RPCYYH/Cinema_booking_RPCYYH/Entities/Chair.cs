@@ -8,5 +8,10 @@ namespace Cinema_booking_RPCYYH
 {
     class Chair
     {
+        public int SeatNumber { get; set; }
+
+        public bool Occupied { get; set; }
+
+        public string Occupant { get; set; }
     }
 }

@@ -12,10 +12,16 @@ namespace Cinema_booking_RPCYYH
 {
     public partial class SeatBooking : Form
     {
+        CinemaEntities context = new CinemaEntities();
+        List<Seat> seats = new List<Seat>();
+
         public SeatBooking(int selectedShowID, string selectedMovieName, DateTime selectedShowTime)
         {
             InitializeComponent();
             createCinemaHall();
+            LoadCharis();
+
+            labelMovieName.Text = selectedMovieName;
         }
 
        // int lineWidth = 3;
@@ -53,6 +59,12 @@ namespace Cinema_booking_RPCYYH
                 ch.Left = col * ch.Width;
                 panel1.Controls.Add(ch);
             }
+        }
+
+        private void LoadCharis()
+        {
+            seats = context.Seats.ToList();
+
         }
     }
 }
