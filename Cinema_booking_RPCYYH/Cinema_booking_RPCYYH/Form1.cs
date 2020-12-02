@@ -34,6 +34,7 @@ namespace Cinema_booking_RPCYYH
 
             dataGridView1.DataSource = (from x in context.Movie_Show
                                         where x.Movie_FK == x.Movie.Movie_ID
+                                        orderby x.StartTime
                                         select new
                                         {
                                             Film = x.Movie.MovieName,

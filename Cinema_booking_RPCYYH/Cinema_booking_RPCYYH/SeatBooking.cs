@@ -19,7 +19,7 @@ namespace Cinema_booking_RPCYYH
         {
             InitializeComponent();
             createCinemaHall();
-            LoadCharis();
+            LoadChares();
 
             labelMovieName.Text = selectedMovieName;
         }
@@ -61,10 +61,38 @@ namespace Cinema_booking_RPCYYH
             }
         }
 
-        private void LoadCharis()
+        private void LoadChares()
         {
             seats = context.Seats.ToList();
+            for (int i = 0; i < 57; i++)
+            {
+                var actualSeatNumber = (from x in context.Seats
+                                       where x.Seat_ID == i
+                                       select x.SeatNumber).FirstOrDefault();
+                Chair ch = new Chair();
+                ch.SeatNumber = actualSeatNumber;
 
+                var occupiedSeat = (from x in context.Tickets
+                                    where x.Seat_FK == i
+                                    select x.Seat_FK).FirstOrDefault();
+                if (occupiedSeat != 0)
+                {
+                    ch.Occupied = true;
+
+                    var occupantPerson = (from x in context.Tickets
+                                          where i == x.Seat_FK
+                                          && x.Booking_FK == x.Booking.Booking_ID
+                                          && x.Booking.Customer_FK == x.Booking.Customer.Customer_ID
+                                          select x.Booking.Customer.Name).FirstOrDefault();
+                    ch.Occupant = occupantPerson;
+                }
+                else
+                {
+                    ch.Occupied = false;
+                    ch.Occupant = "Free";
+                }
+            }
+            
         }
     }
 }
