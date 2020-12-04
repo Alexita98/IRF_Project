@@ -79,7 +79,6 @@ namespace Cinema_booking_RPCYYH
             //MessageBox.Show(selectedShowID+" "+selectedMovieName+" "+selectedShowTime);
 
             this.Hide();
-            //SeatBooking form2 = new SeatBooking(selectedShowID, selectedMovieName, selectedShowTime, countFreeSeats);
             MovieBooking form2 = new MovieBooking(selectedShowID, selectedMovieName, selectedShowTime, countFreeSeats);
             form2.ShowDialog();
         }

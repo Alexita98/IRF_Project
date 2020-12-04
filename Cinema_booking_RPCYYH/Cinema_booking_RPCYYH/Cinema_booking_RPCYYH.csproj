@@ -124,12 +124,6 @@
     <Compile Include="Seat.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="SeatBooking.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="SeatBooking.Designer.cs">
-      <DependentUpon>SeatBooking.cs</DependentUpon>
-    </Compile>
     <Compile Include="Ticket.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -154,9 +148,6 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="SeatBooking.resx">
-      <DependentUpon>SeatBooking.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="UserControl_Information.resx">
       <DependentUpon>UserControl_Information.cs</DependentUpon>
     </EmbeddedResource>
