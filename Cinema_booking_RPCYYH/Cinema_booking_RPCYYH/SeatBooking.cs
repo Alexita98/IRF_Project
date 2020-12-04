@@ -94,5 +94,15 @@ namespace Cinema_booking_RPCYYH
             }
             
         }
+
+        private void labelMovieName_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnBack_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
