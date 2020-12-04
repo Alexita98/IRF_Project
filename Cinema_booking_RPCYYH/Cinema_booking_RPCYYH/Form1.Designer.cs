@@ -150,12 +150,15 @@ namespace Cinema_booking_RPCYYH
             // 
             // btnSeats
             // 
-            this.btnSeats.BackColor = System.Drawing.SystemColors.Control;
-            this.btnSeats.Location = new System.Drawing.Point(90, 346);
+            this.btnSeats.BackColor = System.Drawing.SystemColors.ControlText;
+            this.btnSeats.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnSeats.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.btnSeats.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.btnSeats.Location = new System.Drawing.Point(65, 361);
             this.btnSeats.Name = "btnSeats";
-            this.btnSeats.Size = new System.Drawing.Size(120, 70);
+            this.btnSeats.Size = new System.Drawing.Size(166, 52);
             this.btnSeats.TabIndex = 8;
-            this.btnSeats.Text = "Hely Foglalás";
+            this.btnSeats.Text = "Helyfoglalás";
             this.btnSeats.UseVisualStyleBackColor = false;
             this.btnSeats.Click += new System.EventHandler(this.btnSeats_Click);
             // 

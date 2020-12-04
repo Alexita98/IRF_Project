@@ -58,12 +58,8 @@ namespace Cinema_booking_RPCYYH
             //Movie_Show selectedTime = (Movie_Show)cboxTime.SelectedItem;
             DateTime selectedTime = (DateTime)cboxTime.SelectedItem;
             Movie selectedMovie = (Movie)cboxMovie.SelectedItem;
-            int? countFreeSeats = 50-(from x in context.Tickets
-                                   where x.Movie_Show.Movie.Movie_ID == selectedMovie.Movie_ID 
-                                   //&& x.Movie_Show_FK == selectedTime.Movie_Show_ID
-                                   && x.Movie_Show_FK == x.Movie_Show.Movie_Show_ID
-                                   && x.Movie_Show.StartTime == selectedTime
-                                   select x.Seat_FK).Count();
+     
+            int countFreeSeats = CountFreeSeats(selectedMovie, selectedTime);
             labelSeatNumber.Text = countFreeSeats.ToString();
         }
 
@@ -77,11 +73,13 @@ namespace Cinema_booking_RPCYYH
                                    select x.Movie_Show_ID).FirstOrDefault();
             string selectedMovieName = selectedMovie.MovieName;
             DateTime selectedShowTime = selectedTime;
+            int countFreeSeats = CountFreeSeats(selectedMovie, selectedTime);
+
 
             //MessageBox.Show(selectedShowID+" "+selectedMovieName+" "+selectedShowTime);
 
             this.Hide();
-            SeatBooking form2 = new SeatBooking(selectedShowID, selectedMovieName, selectedShowTime);
+            SeatBooking form2 = new SeatBooking(selectedShowID, selectedMovieName, selectedShowTime, countFreeSeats);
             form2.ShowDialog();
         }
 
@@ -96,6 +94,16 @@ namespace Cinema_booking_RPCYYH
                     select t
                ).ToList();
         }*/
+
+        private int CountFreeSeats(Movie selectedMovie, DateTime selectedTime)
+        {
+            int freeSeats = 57 - (from x in context.Tickets
+                                  where x.Movie_Show.Movie.Movie_ID == selectedMovie.Movie_ID
+                                  && x.Movie_Show_FK == x.Movie_Show.Movie_Show_ID
+                                  && x.Movie_Show.StartTime == selectedTime
+                                  select x.Seat_FK).Count();
+            return freeSeats;
+        }
 
     }
 }

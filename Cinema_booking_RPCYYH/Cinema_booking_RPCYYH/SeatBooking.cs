@@ -15,13 +15,22 @@ namespace Cinema_booking_RPCYYH
         CinemaEntities context = new CinemaEntities();
         List<Seat> seats = new List<Seat>();
 
-        public SeatBooking(int selectedShowID, string selectedMovieName, DateTime selectedShowTime)
+        public SeatBooking(int selectedShowID, string selectedMovieName, DateTime selectedShowTime, int countFreeSeats)
         {
             InitializeComponent();
             createCinemaHall();
             LoadChares();
 
-            labelMovieName.Text = selectedMovieName;
+            txtMovie.Text = selectedMovieName;
+            txtTime.Text = Convert.ToString(selectedShowTime);
+            txtFree.Text = Convert.ToString(countFreeSeats);
+            txtTotal.Text = "57";
+
+            labelMovie.BackColor = System.Drawing.Color.Transparent;
+            labelTime.BackColor = System.Drawing.Color.Transparent;
+            labelFree.BackColor = System.Drawing.Color.Transparent;
+            labelTotal.BackColor = System.Drawing.Color.Transparent;
+            labelTitle.BackColor = System.Drawing.Color.Transparent;
         }
 
        // int lineWidth = 3;
@@ -29,7 +38,7 @@ namespace Cinema_booking_RPCYYH
         {
             int row, col;
             
-            for (row = 3; row < 7; row++)
+            for (row = 7; row < 11; row++)
             {
                 for (col = 3; col < 8; col++)
                 {
@@ -41,7 +50,7 @@ namespace Cinema_booking_RPCYYH
                     panel1.Controls.Add(ch);
                 }
             }
-            for (row = 2; row < 7; row++)
+            for (row = 6; row < 11; row++)
             {
                 for (col = 10; col < 15; col++)
                 {
@@ -55,7 +64,7 @@ namespace Cinema_booking_RPCYYH
             for(col=3; col< 15; col++)
             {
                 CinemaHall ch = new CinemaHall();
-                ch.Top = 7 * ch.Height;
+                ch.Top = 11 * ch.Height;
                 ch.Left = col * ch.Width;
                 panel1.Controls.Add(ch);
             }
@@ -95,14 +104,12 @@ namespace Cinema_booking_RPCYYH
             
         }
 
-        private void labelMovieName_Click(object sender, EventArgs e)
-        {
-
-        }
-
+      
         private void btnBack_Click(object sender, EventArgs e)
         {
-
+            this.Hide();
+            Form1 form1 = new Form1();
+            form1.ShowDialog();
         }
     }
 }
