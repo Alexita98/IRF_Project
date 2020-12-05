@@ -13,13 +13,15 @@ namespace Cinema_booking_RPCYYH
     public partial class MovieBooking : Form
     {
         CinemaEntities context = new CinemaEntities();
-        List<Seat> seats = new List<Seat>();
+        List<Chair> seats = new List<Chair>();
+        List<Seat> db_seats = new List<Seat>();
 
         public MovieBooking(int selectedShowID, string selectedMovieName, DateTime selectedShowTime, int countFreeSeats)
         {
             InitializeComponent();
             createCinemaHall();
             LoadChares();
+            ChairNumbers();
 
             txtMovie.Text = selectedMovieName;
             txtTime.Text = Convert.ToString(selectedShowTime);
@@ -68,7 +70,40 @@ namespace Cinema_booking_RPCYYH
 
         private void LoadChares()
         {
-            seats = context.Seats.ToList();
+            seats.Clear();
+            db_seats.Clear();
+
+            db_seats = context.Seats.ToList();
+            
+            foreach (Seat seat in db_seats)
+            {
+                Chair ch = new Chair();
+                ch.SeatNumber = seat.SeatNumber;
+
+                //bool has = seat.Any(cus => cus.SeatNumber == i);
+                var occupiedSeat = (from x in context.Tickets
+                                    where x.Seat_FK == seat.SeatNumber
+                                    select x.Seat_FK).Any();
+                if (occupiedSeat == true)
+                {
+                    ch.Occupied = true;
+                    var occupantPerson = (from x in context.Tickets
+                                          where x.Seat_FK == seat.SeatNumber
+                                          && x.Booking_FK == x.Booking.Booking_ID
+                                          && x.Booking.Customer_FK == x.Booking.Customer.Customer_ID
+                                          select x.Booking.Customer.Name).FirstOrDefault();
+                    ch.Occupant = occupantPerson;
+                }
+                else
+                {
+                    ch.Occupied = false;
+                    ch.Occupant = "Free";
+                }
+                seats.Add(ch);
+                
+            }
+            
+            /*
             for (int i = 0; i < 57; i++)
             {
                 var actualSeatNumber = (from x in context.Seats
@@ -84,6 +119,7 @@ namespace Cinema_booking_RPCYYH
                 {
                     ch.Occupied = true;
 
+
                     var occupantPerson = (from x in context.Tickets
                                           where i == x.Seat_FK
                                           && x.Booking_FK == x.Booking.Booking_ID
@@ -96,7 +132,8 @@ namespace Cinema_booking_RPCYYH
                     ch.Occupied = false;
                     ch.Occupant = "Free";
                 }
-            }
+                seats.Add(ch);
+            }*/
 
         }
 
@@ -115,9 +152,16 @@ namespace Cinema_booking_RPCYYH
             ucI.Dock = DockStyle.Fill;
         }
 
-        private void mainPanel_Paint(object sender, PaintEventArgs e)
+        private void ChairNumbers() 
         {
-
+            int i = 0;
+            //aktualFeladvany = GetRandomQuiz();
+            foreach (var sf in panelChairs.Controls.OfType<CinemaHall>())
+            {
+                sf.Value = int.Parse(aktualFeladvany.Quiz[i].ToString());
+                sf.Active = sf.Value == 0; //ha a sudokuField=0 --> Active=false 
+                i++;
+            }
         }
     }
 }

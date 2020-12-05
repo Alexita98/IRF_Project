@@ -21,9 +21,6 @@ namespace Cinema_booking_RPCYYH
 
             cboxMovie.DisplayMember = "MovieName";
             cboxTime.DisplayMember = "StartTime";
-            //cboxYear.DisplayMember = "PublishYear";
-            //cboxDay.DisplayMember = "StartTime";
-            //cboxTime.ValueMember = "Movie_ID";
 
             cboxMovie.DataSource = (from x in context.Movies
                                     select x).ToList();
@@ -42,7 +39,8 @@ namespace Cinema_booking_RPCYYH
                                             Megjelenés = x.Movie.PublishYear,
                                             Filmhossz = x.Movie.DurationMinutes
                                         }).ToList();
-            //this.dataGridView1.Sort(this.dataGridView1.Columns["Vetítés"], ListSortDirection.Ascending);
+           
+            GetFreeSeats();
         }
 
         private void cboxMovie_SelectedIndexChanged(object sender, EventArgs e)
@@ -55,12 +53,7 @@ namespace Cinema_booking_RPCYYH
 
         private void cboxTime_SelectedIndexChanged(object sender, EventArgs e)
         {
-            //Movie_Show selectedTime = (Movie_Show)cboxTime.SelectedItem;
-            DateTime selectedTime = (DateTime)cboxTime.SelectedItem;
-            Movie selectedMovie = (Movie)cboxMovie.SelectedItem;
-     
-            int countFreeSeats = CountFreeSeats(selectedMovie, selectedTime);
-            labelSeatNumber.Text = countFreeSeats.ToString();
+            GetFreeSeats();
         }
 
         private void btnSeats_Click(object sender, EventArgs e)
@@ -75,8 +68,6 @@ namespace Cinema_booking_RPCYYH
             DateTime selectedShowTime = selectedTime;
             int countFreeSeats = CountFreeSeats(selectedMovie, selectedTime);
 
-
-            //MessageBox.Show(selectedShowID+" "+selectedMovieName+" "+selectedShowTime);
 
             this.Hide();
             MovieBooking form2 = new MovieBooking(selectedShowID, selectedMovieName, selectedShowTime, countFreeSeats);
@@ -103,6 +94,14 @@ namespace Cinema_booking_RPCYYH
                                   && x.Movie_Show.StartTime == selectedTime
                                   select x.Seat_FK).Count();
             return freeSeats;
+        }
+
+        private void GetFreeSeats()
+        {
+            DateTime selectedTime = (DateTime)cboxTime.SelectedItem;
+            Movie selectedMovie = (Movie)cboxMovie.SelectedItem;
+            int countFreeSeats = CountFreeSeats(selectedMovie, selectedTime);
+            labelSeatNumber.Text = countFreeSeats.ToString();
         }
 
     }

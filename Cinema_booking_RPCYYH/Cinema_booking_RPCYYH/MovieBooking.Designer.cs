@@ -57,7 +57,7 @@ namespace Cinema_booking_RPCYYH
             this.mainPanel.Name = "mainPanel";
             this.mainPanel.Size = new System.Drawing.Size(1048, 586);
             this.mainPanel.TabIndex = 0;
-            this.mainPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.mainPanel_Paint);
+            
             // 
             // panelDetails
             // 

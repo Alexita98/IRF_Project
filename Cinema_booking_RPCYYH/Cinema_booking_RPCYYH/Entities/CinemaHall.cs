@@ -20,13 +20,24 @@ namespace Cinema_booking_RPCYYH
 
         private void CinemaHall_MouseDown(object sender, MouseEventArgs e)
         {
-            if (e.Button == MouseButtons.Left)
+            /*if (e.Button == MouseButtons.Left)
             {
                 this.BackColor = Color.Orange;
             }
             if (e.Button == MouseButtons.Right)
             {
                 this.BackColor = Color.Green;
+            }*/
+
+            Control ctrl = ((Control)sender);
+            switch (ctrl.BackColor.Name)
+            {
+                case "Orange":
+                    ctrl.BackColor = Color.Green;
+                    break;
+                default:
+                    ctrl.BackColor = Color.Orange;
+                    break;
             }
         }
 
