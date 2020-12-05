@@ -12,9 +12,12 @@ namespace Cinema_booking_RPCYYH
 {
     public partial class MovieBooking : Form
     {
-        CinemaEntities context = new CinemaEntities();
+
+        //CinemaEntities context = new CinemaEntities();
+        CinemaEntities1 context = new CinemaEntities1();
         List<Chair> seats = new List<Chair>();
         List<Seat> db_seats = new List<Seat>();
+        private Chair actualChair;
 
         public MovieBooking(int selectedShowID, string selectedMovieName, DateTime selectedShowTime, int countFreeSeats)
         {
@@ -38,6 +41,8 @@ namespace Cinema_booking_RPCYYH
         private void createCinemaHall()
         {
             int row, col;
+            
+
 
             for (row = 7; row < 11; row++)
             {
@@ -68,6 +73,7 @@ namespace Cinema_booking_RPCYYH
             }
         }
 
+
         private void LoadChares()
         {
             seats.Clear();
@@ -79,6 +85,7 @@ namespace Cinema_booking_RPCYYH
             {
                 Chair ch = new Chair();
                 ch.SeatNumber = seat.SeatNumber;
+                ch.RowNumber = seat.Row_FK;
 
                 //bool has = seat.Any(cus => cus.SeatNumber == i);
                 var occupiedSeat = (from x in context.Tickets
@@ -155,11 +162,12 @@ namespace Cinema_booking_RPCYYH
         private void ChairNumbers() 
         {
             int i = 0;
-            //aktualFeladvany = GetRandomQuiz();
+            
             foreach (var sf in panelChairs.Controls.OfType<CinemaHall>())
             {
-                sf.Value = int.Parse(aktualFeladvany.Quiz[i].ToString());
-                sf.Active = sf.Value == 0; //ha a sudokuField=0 --> Active=false 
+                actualChair = seats[i];
+                sf.Value = int.Parse(actualChair.SeatNumber.ToString());
+                //sf.Active = sf.Value == 0; //ha a sudokuField=0 --> Active=false 
                 i++;
             }
         }

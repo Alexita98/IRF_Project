@@ -10,6 +10,8 @@ namespace Cinema_booking_RPCYYH
     {
         public int SeatNumber { get; set; }
 
+        public int RowNumber { get; set; }
+
         public bool Occupied { get; set; }
 
         public string Occupant { get; set; }

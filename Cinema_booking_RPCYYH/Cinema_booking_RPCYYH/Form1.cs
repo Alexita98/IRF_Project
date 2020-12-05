@@ -12,7 +12,7 @@ namespace Cinema_booking_RPCYYH
 {
     public partial class Form1 : Form
     {
-        CinemaEntities context = new CinemaEntities();
+        CinemaEntities1 context = new CinemaEntities1();
         public Form1()
         {
             InitializeComponent();
