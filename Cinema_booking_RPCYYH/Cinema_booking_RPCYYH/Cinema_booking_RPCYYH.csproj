@@ -97,8 +97,6 @@
     <Compile Include="Entities\Curtain.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Entities\CanvasCreate.cs" />
-    <Compile Include="Entities\CurtainCreate.cs" />
     <Compile Include="MovieBooking.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -216,7 +214,9 @@
       <DependentUpon>Cinema1.edmx</DependentUpon>
       <LastGenOutput>Cinema1.cs</LastGenOutput>
     </Content>
-    <Content Include="images\curtain.png" />
+    <Content Include="images\curtain.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Model1.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>Model1.Context.cs</LastGenOutput>

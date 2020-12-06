@@ -4,22 +4,40 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace Cinema_booking_RPCYYH.Entities
 {
-    public class Canvas : CinemaScreen
+    public class Canvas : Label
     {
-        public SolidBrush BallColor { get; private set; }
+        public SolidBrush CanvasColor { get; private set; }
         public Canvas(Color color)
         {
-            BallColor = new SolidBrush(color);
+            AutoSize = false;
+            Width = 50;
+            Height = 50;
+            CanvasColor = new SolidBrush(color);
+
+            Paint += Canvas_Paint;
         }
 
-        protected override void DrawImage(Graphics graphics)
+        private void Canvas_Paint(object sender, PaintEventArgs e)
         {
-            graphics.FillEllipse(BallColor, 0, 0, Width, Height);
+            DrawImage(e.Graphics);
         }
 
-        
+        void DrawImage(Graphics graphics)
+        {
+            graphics.FillEllipse(CanvasColor, 0, 0, Width, Height);
+        }
+
+        public Color CanvasColor1 { get; set; }
+
+        public Canvas CreateNew()
+        {
+            return new Canvas(CanvasColor1);
+        }
+
+
     }
 }

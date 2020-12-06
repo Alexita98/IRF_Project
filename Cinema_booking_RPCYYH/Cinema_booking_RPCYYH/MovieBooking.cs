@@ -20,13 +20,13 @@ namespace Cinema_booking_RPCYYH
         List<Chair> seats = new List<Chair>();
         List<Seat> db_seats = new List<Seat>();
         private Chair actualChair;
-        private List<CinemaScreen> _figures = new List<CinemaScreen>();
+        /*private List<CinemaScreen> _figures = new List<CinemaScreen>();
         private FigureCreate _create;
         public FigureCreate Creation
         {
             get { return _create; }
             set { _create = value; }
-        }
+        }*/
 
         public MovieBooking(int selectedShowID, string selectedMovieName, DateTime selectedShowTime, int countFreeSeats)
         {
@@ -46,11 +46,13 @@ namespace Cinema_booking_RPCYYH
             labelTotal.BackColor = System.Drawing.Color.Transparent;
             labelTitle.BackColor = System.Drawing.Color.Transparent;
 
-            Creation = new CurtainCreate();
-
+            /*Creation = new CurtainCreate();
             var figure = Creation.CreateNew();
             _figures.Add(figure);
-            panelChairs.Controls.Add(figure);
+            panelChairs.Controls.Add(figure);*/
+
+            Curtain curtain = new Curtain();
+            panelChairs.Controls.Add(curtain);
      
         }
 
