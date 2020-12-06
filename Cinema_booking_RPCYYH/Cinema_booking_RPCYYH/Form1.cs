@@ -23,10 +23,16 @@ namespace Cinema_booking_RPCYYH
 
             cboxMovie.DataSource = (from x in context.Movies
                                     select x).ToList();
-            cboxYear.DataSource = (from x in context.Movies
-                                   select x.PublishYear).ToList();
+            /*cboxYear.DataSource = (from x in context.Movies
+                                   select x.PublishYear).ToList();*/
 
-            // this.searchMovie();
+            System.Object[] ItemObject = new System.Object[2];
+            ItemObject[0] = "Megjelenési év";
+            ItemObject[1] = "Film név";
+
+            cBoxFilters.Items.AddRange(ItemObject);
+
+      
 
             dataGridView1.DataSource = (from x in context.Movie_Show
                                         where x.Movie_FK == x.Movie.Movie_ID
@@ -38,6 +44,7 @@ namespace Cinema_booking_RPCYYH
                                             Megjelenés = x.Movie.PublishYear,
                                             Filmhossz = x.Movie.DurationMinutes
                                         }).ToList();
+            Filters();
            
             GetFreeSeats();
         }
@@ -73,17 +80,6 @@ namespace Cinema_booking_RPCYYH
             form2.ShowDialog();
         }
 
-
-        /*private void searchMovie()
-        {
-            string searchValue = txtboxTitle.Text.ToLower();
-            txtboxTitle.DataSource =
-                (
-                    from t in context.Textbook //.Local szűrés optimalizálás
-                        where t.Title.ToLower().Contains(txtboxTitle.Text)
-                    select t
-               ).ToList();
-        }*/
 
         private int CountFreeSeats(Movie selectedMovie, DateTime selectedTime)
         {
@@ -140,6 +136,67 @@ namespace Cinema_booking_RPCYYH
             {
                 MessageBox.Show("A moziműsor sikeresen mentésre került");
             }
+        }
+
+       
+
+        private void YearFilter()
+        {
+            int selectedYear = Convert.ToInt32(cboxYear.SelectedItem);
+            dataGridView1.DataSource = (from x in context.Movie_Show
+                                        where selectedYear == x.Movie.PublishYear
+                                        && x.Movie_FK == x.Movie.Movie_ID
+                                        orderby x.StartTime
+                                        select new
+                                        {
+                                            Film = x.Movie.MovieName,
+                                            Vetítés = x.StartTime,
+                                            Megjelenés = x.Movie.PublishYear,
+                                            Filmhossz = x.Movie.DurationMinutes
+                                        }).ToList();
+        }
+        private void MovieFilter()
+        {
+            string selectedMovie = Convert.ToString(cboxYear.SelectedItem);
+            dataGridView1.DataSource = (from x in context.Movie_Show
+                                        where selectedMovie == x.Movie.MovieName
+                                        && x.Movie_FK == x.Movie.Movie_ID
+                                        orderby x.StartTime
+                                        select new
+                                        {
+                                            Film = x.Movie.MovieName,
+                                            Vetítés = x.StartTime,
+                                            Megjelenés = x.Movie.PublishYear,
+                                            Filmhossz = x.Movie.DurationMinutes
+                                        }).ToList();
+        }
+        
+
+        private void Filters()
+        {
+            if (Convert.ToString(cBoxFilters.SelectedItem) == "Megjelenési év")
+            {
+                cboxYear.DataSource = (from x in context.Movies
+                                       select x.PublishYear).ToList();
+                YearFilter();
+            }
+            else if (Convert.ToString(cBoxFilters.SelectedItem) == "Film név")
+            {
+                cboxYear.DataSource = (from x in context.Movies
+                                       select x.MovieName).ToList();
+                MovieFilter();
+            }
+            
+        }
+
+        private void cBoxFilters_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Filters();
+        }
+        private void cboxYear_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Filters();
+           
         }
     }
 }

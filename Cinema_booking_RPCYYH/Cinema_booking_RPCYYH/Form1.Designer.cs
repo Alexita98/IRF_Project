@@ -39,11 +39,11 @@ namespace Cinema_booking_RPCYYH
             this.label2 = new System.Windows.Forms.Label();
             this.cboxMovie = new System.Windows.Forms.ComboBox();
             this.btnSeats = new System.Windows.Forms.Button();
-            this.txtboxTitle = new System.Windows.Forms.TextBox();
             this.cboxYear = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.btnSave = new System.Windows.Forms.Button();
+            this.cBoxFilters = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -72,7 +72,7 @@ namespace Cinema_booking_RPCYYH
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.BackColor = System.Drawing.SystemColors.Control;
-            this.splitContainer1.Panel2.Controls.Add(this.txtboxTitle);
+            this.splitContainer1.Panel2.Controls.Add(this.cBoxFilters);
             this.splitContainer1.Panel2.Controls.Add(this.cboxYear);
             this.splitContainer1.Panel2.Controls.Add(this.label6);
             this.splitContainer1.Panel2.Controls.Add(this.dataGridView1);
@@ -165,22 +165,14 @@ namespace Cinema_booking_RPCYYH
             this.btnSeats.UseVisualStyleBackColor = false;
             this.btnSeats.Click += new System.EventHandler(this.btnSeats_Click);
             // 
-            // txtboxTitle
-            // 
-            this.txtboxTitle.Location = new System.Drawing.Point(233, 58);
-            this.txtboxTitle.Name = "txtboxTitle";
-            this.txtboxTitle.Size = new System.Drawing.Size(321, 26);
-            this.txtboxTitle.TabIndex = 14;
-            this.txtboxTitle.Text = "Kereső";
-            // 
             // cboxYear
             // 
             this.cboxYear.FormattingEnabled = true;
-            this.cboxYear.Location = new System.Drawing.Point(61, 56);
+            this.cboxYear.Location = new System.Drawing.Point(243, 53);
             this.cboxYear.Name = "cboxYear";
             this.cboxYear.Size = new System.Drawing.Size(158, 28);
             this.cboxYear.TabIndex = 11;
-            this.cboxYear.Text = "Megjelenési év";
+            this.cboxYear.SelectedIndexChanged += new System.EventHandler(this.cboxYear_SelectedIndexChanged);
             // 
             // label6
             // 
@@ -215,6 +207,16 @@ namespace Cinema_booking_RPCYYH
             this.btnSave.Text = "Moziműsor mentése";
             this.btnSave.UseVisualStyleBackColor = false;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
+            // 
+            // cBoxFilters
+            // 
+            this.cBoxFilters.FormattingEnabled = true;
+            this.cBoxFilters.Location = new System.Drawing.Point(61, 53);
+            this.cBoxFilters.Name = "cBoxFilters";
+            this.cBoxFilters.Size = new System.Drawing.Size(158, 28);
+            this.cBoxFilters.TabIndex = 13;
+            this.cBoxFilters.Text = "Filters";
+            this.cBoxFilters.SelectedIndexChanged += new System.EventHandler(this.cBoxFilters_SelectedIndexChanged);
             // 
             // Form1
             // 
@@ -253,8 +255,8 @@ namespace Cinema_booking_RPCYYH
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Label labelTitel;
-        private System.Windows.Forms.TextBox txtboxTitle;
         private System.Windows.Forms.Button btnSave;
+        private System.Windows.Forms.ComboBox cBoxFilters;
     }
 }
 
