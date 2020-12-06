@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Cinema_booking_RPCYYH.Abstractions;
+using Cinema_booking_RPCYYH.Entities;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -18,6 +20,13 @@ namespace Cinema_booking_RPCYYH
         List<Chair> seats = new List<Chair>();
         List<Seat> db_seats = new List<Seat>();
         private Chair actualChair;
+        private List<CinemaScreen> _figures = new List<CinemaScreen>();
+        private FigureCreate _create;
+        public FigureCreate Creation
+        {
+            get { return _create; }
+            set { _create = value; }
+        }
 
         public MovieBooking(int selectedShowID, string selectedMovieName, DateTime selectedShowTime, int countFreeSeats)
         {
@@ -36,46 +45,53 @@ namespace Cinema_booking_RPCYYH
             labelFree.BackColor = System.Drawing.Color.Transparent;
             labelTotal.BackColor = System.Drawing.Color.Transparent;
             labelTitle.BackColor = System.Drawing.Color.Transparent;
+
+            Creation = new CurtainCreate();
+
+            var figure = Creation.CreateNew();
+            _figures.Add(figure);
+            panelChairs.Controls.Add(figure);
+     
         }
 
         private void createCinemaHall()
         {
-            int row, col;
-            
+            panelChairs.Controls.Clear();
+            int row, col, index;
+            int lineWidth = 30;
 
+            index = 0;
 
-            for (row = 7; row < 11; row++)
-            {
-                for (col = 3; col < 8; col++)
-                {
-                    CinemaHall ch = new CinemaHall();
-                    ch.Top = row * ch.Height;
-                    ch.Left = col * ch.Width;
-                    panelChairs.Controls.Add(ch);
-                }
-            }
             for (row = 6; row < 11; row++)
             {
-                for (col = 10; col < 15; col++)
+                for (col = 3; col < 13; col++)
                 {
                     CinemaHall ch = new CinemaHall();
+                    ch.buttonIndex = index;
                     ch.Top = row * ch.Height;
-                    ch.Left = col * ch.Width;
+                    ch.Left = col * ch.Width + (int)(Math.Floor((double)(col / 5))) * lineWidth;
                     panelChairs.Controls.Add(ch);
+
+                    index++;
                 }
             }
+
             for (col = 3; col < 15; col++)
             {
                 CinemaHall ch = new CinemaHall();
+                ch.buttonIndex = index;
                 ch.Top = 11 * ch.Height;
                 ch.Left = col * ch.Width;
                 panelChairs.Controls.Add(ch);
+
+                index++;
             }
         }
 
 
         private void LoadChares()
         {
+            //int i = 0;
             seats.Clear();
             db_seats.Clear();
 
@@ -86,10 +102,10 @@ namespace Cinema_booking_RPCYYH
                 Chair ch = new Chair();
                 ch.SeatNumber = seat.SeatNumber;
                 ch.RowNumber = seat.Row_FK;
+                ch.Index = seat.Seat_ID;
 
-                //bool has = seat.Any(cus => cus.SeatNumber == i);
                 var occupiedSeat = (from x in context.Tickets
-                                    where x.Seat_FK == seat.SeatNumber
+                                    where x.Seat_FK == ch.Index
                                     select x.Seat_FK).Any();
                 if (occupiedSeat == true)
                 {
@@ -100,6 +116,17 @@ namespace Cinema_booking_RPCYYH
                                           && x.Booking.Customer_FK == x.Booking.Customer.Customer_ID
                                           select x.Booking.Customer.Name).FirstOrDefault();
                     ch.Occupant = occupantPerson;
+
+
+                    foreach (var chall in panelChairs.Controls.OfType<CinemaHall>())
+                    {
+                        //int.Parse(actualChair.SeatNumber.ToString())
+                        if (chall.buttonIndex==int.Parse(seat.Seat_ID.ToString()))
+                        {
+                            chall.BackColor = Color.Red;
+                        }
+                    }
+
                 }
                 else
                 {
@@ -110,38 +137,6 @@ namespace Cinema_booking_RPCYYH
                 
             }
             
-            /*
-            for (int i = 0; i < 57; i++)
-            {
-                var actualSeatNumber = (from x in context.Seats
-                                        where x.Seat_ID == i
-                                        select x.SeatNumber).FirstOrDefault();
-                Chair ch = new Chair();
-                ch.SeatNumber = actualSeatNumber;
-
-                var occupiedSeat = (from x in context.Tickets
-                                    where x.Seat_FK == i
-                                    select x.Seat_FK).FirstOrDefault();
-                if (occupiedSeat != 0)
-                {
-                    ch.Occupied = true;
-
-
-                    var occupantPerson = (from x in context.Tickets
-                                          where i == x.Seat_FK
-                                          && x.Booking_FK == x.Booking.Booking_ID
-                                          && x.Booking.Customer_FK == x.Booking.Customer.Customer_ID
-                                          select x.Booking.Customer.Name).FirstOrDefault();
-                    ch.Occupant = occupantPerson;
-                }
-                else
-                {
-                    ch.Occupied = false;
-                    ch.Occupant = "Free";
-                }
-                seats.Add(ch);
-            }*/
-
         }
 
         private void btnBack_Click(object sender, EventArgs e)
@@ -169,6 +164,14 @@ namespace Cinema_booking_RPCYYH
                 sf.Value = int.Parse(actualChair.SeatNumber.ToString());
                 //sf.Active = sf.Value == 0; //ha a sudokuField=0 --> Active=false 
                 i++;
+            }
+        }
+
+        private void BookedChairs()
+        {
+            if (true)
+            {
+
             }
         }
     }

@@ -72,6 +72,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Abstractions\FigureCreate.cs" />
     <Compile Include="Booking.cs">
       <DependentUpon>Cinema1.tt</DependentUpon>
     </Compile>
@@ -90,6 +91,14 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Cinema1.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Entities\Canvas.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Entities\Curtain.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Entities\CanvasCreate.cs" />
+    <Compile Include="Entities\CurtainCreate.cs" />
     <Compile Include="MovieBooking.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -100,7 +109,9 @@
     <Compile Include="Entities\CinemaHall.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Entities\CinemaScreen.cs" />
+    <Compile Include="Abstractions\CinemaScreen.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Customer.cs">
       <DependentUpon>Cinema1.tt</DependentUpon>
     </Compile>
@@ -205,6 +216,7 @@
       <DependentUpon>Cinema1.edmx</DependentUpon>
       <LastGenOutput>Cinema1.cs</LastGenOutput>
     </Content>
+    <Content Include="images\curtain.png" />
     <Content Include="Model1.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>Model1.Context.cs</LastGenOutput>

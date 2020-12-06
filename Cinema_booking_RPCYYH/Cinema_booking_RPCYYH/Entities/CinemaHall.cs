@@ -10,6 +10,7 @@ namespace Cinema_booking_RPCYYH
 {
     class CinemaHall : Button
     {
+        public int buttonIndex { get; set; }
         public CinemaHall()
         {
             this.Height = 30;

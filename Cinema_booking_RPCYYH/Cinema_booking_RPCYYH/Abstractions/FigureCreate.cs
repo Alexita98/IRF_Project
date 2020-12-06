@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Cinema_booking_RPCYYH
+namespace Cinema_booking_RPCYYH.Abstractions
 {
-    class CinemaScreen
+    public interface FigureCreate
     {
+        CinemaScreen CreateNew();
     }
 }
