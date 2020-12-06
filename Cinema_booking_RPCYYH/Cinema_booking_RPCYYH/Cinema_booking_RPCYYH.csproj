@@ -72,7 +72,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Abstractions\FigureCreate.cs" />
     <Compile Include="Booking.cs">
       <DependentUpon>Cinema1.tt</DependentUpon>
     </Compile>
@@ -97,6 +96,9 @@
     <Compile Include="Entities\Curtain.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Entities\Stairs.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="MovieBooking.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -105,9 +107,6 @@
     </Compile>
     <Compile Include="Entities\Chair.cs" />
     <Compile Include="Entities\CinemaHall.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Abstractions\CinemaScreen.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Customer.cs">
