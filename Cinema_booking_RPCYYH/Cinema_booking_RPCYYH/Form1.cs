@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,8 +17,6 @@ namespace Cinema_booking_RPCYYH
         public Form1()
         {
             InitializeComponent();
-            /* this.TopMost = true;
-             this.WindowState = FormWindowState.Maximized;*/
 
             cboxMovie.DisplayMember = "MovieName";
             cboxTime.DisplayMember = "StartTime";
@@ -104,5 +103,43 @@ namespace Cinema_booking_RPCYYH
             labelSeatNumber.Text = countFreeSeats.ToString();
         }
 
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog sfd = new SaveFileDialog();
+            bool saving = true;
+            if (sfd.ShowDialog() != DialogResult.OK) return;
+
+            try
+            {
+                using (StreamWriter sw = new StreamWriter(sfd.FileName, false, Encoding.Default))
+                {
+                    sw.Write("Film" + ";" + "Vetítés" + ";" + "Megjelenés" + ";" + "Filmhossz");
+                    sw.WriteLine();
+                    for (int i = 0; i < dataGridView1.Rows.Count - 1; i++)
+                    {
+                        for (int j = 0; j < dataGridView1.Columns.Count; j++)
+                        {
+                            sw.Write($"{dataGridView1.Rows[i].Cells[j].Value.ToString()}");
+
+                            if (j != dataGridView1.Columns.Count - 1)
+                            {
+                                sw.Write(";");
+                            }
+                        }
+                        sw.WriteLine();
+                    }
+                }
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                saving = false;
+            }
+
+            if (saving == true)
+            {
+                MessageBox.Show("A moziműsor sikeresen mentésre került");
+            }
+        }
     }
 }

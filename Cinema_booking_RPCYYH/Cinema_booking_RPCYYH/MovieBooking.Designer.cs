@@ -31,7 +31,9 @@ namespace Cinema_booking_RPCYYH
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MovieBooking));
             this.mainPanel = new System.Windows.Forms.Panel();
+            this.panelStairs1 = new System.Windows.Forms.Panel();
             this.panelChairs = new System.Windows.Forms.Panel();
+            this.panelStairs2 = new System.Windows.Forms.Panel();
             this.panelDetails = new System.Windows.Forms.Panel();
             this.btnBack = new System.Windows.Forms.Button();
             this.btnBook = new System.Windows.Forms.Button();
@@ -44,13 +46,13 @@ namespace Cinema_booking_RPCYYH
             this.txtTime = new System.Windows.Forms.TextBox();
             this.txtMovie = new System.Windows.Forms.TextBox();
             this.labelTitle = new System.Windows.Forms.Label();
-            this.panelStairs1 = new System.Windows.Forms.Panel();
             this.mainPanel.SuspendLayout();
             this.panelDetails.SuspendLayout();
             this.SuspendLayout();
             // 
             // mainPanel
             // 
+            this.mainPanel.Controls.Add(this.panelStairs2);
             this.mainPanel.Controls.Add(this.panelStairs1);
             this.mainPanel.Controls.Add(this.panelChairs);
             this.mainPanel.Controls.Add(this.panelDetails);
@@ -60,6 +62,14 @@ namespace Cinema_booking_RPCYYH
             this.mainPanel.Size = new System.Drawing.Size(1048, 586);
             this.mainPanel.TabIndex = 0;
             // 
+            // panelStairs1
+            // 
+            this.panelStairs1.BackColor = System.Drawing.SystemColors.Info;
+            this.panelStairs1.Location = new System.Drawing.Point(520, 278);
+            this.panelStairs1.Name = "panelStairs1";
+            this.panelStairs1.Size = new System.Drawing.Size(34, 223);
+            this.panelStairs1.TabIndex = 0;
+            // 
             // panelChairs
             // 
             this.panelChairs.BackColor = System.Drawing.SystemColors.Window;
@@ -67,6 +77,14 @@ namespace Cinema_booking_RPCYYH
             this.panelChairs.Name = "panelChairs";
             this.panelChairs.Size = new System.Drawing.Size(755, 586);
             this.panelChairs.TabIndex = 3;
+            // 
+            // panelStairs2
+            // 
+            this.panelStairs2.BackColor = System.Drawing.SystemColors.Info;
+            this.panelStairs2.Location = new System.Drawing.Point(790, 279);
+            this.panelStairs2.Name = "panelStairs2";
+            this.panelStairs2.Size = new System.Drawing.Size(34, 223);
+            this.panelStairs2.TabIndex = 1;
             // 
             // panelDetails
             // 
@@ -201,15 +219,6 @@ namespace Cinema_booking_RPCYYH
             this.labelTitle.TabIndex = 0;
             this.labelTitle.Text = "Részletek";
             // 
-            // panelStairs1
-            // 
-            this.panelStairs1.BackColor = System.Drawing.SystemColors.Info;
-            this.panelStairs1.Location = new System.Drawing.Point(520, 278);
-            this.panelStairs1.Name = "panelStairs1";
-            this.panelStairs1.Size = new System.Drawing.Size(34, 223);
-            this.panelStairs1.TabIndex = 0;
-            this.panelStairs1.Paint += new System.Windows.Forms.PaintEventHandler(this.panelStairs1_Paint);
-            // 
             // MovieBooking
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -243,5 +252,6 @@ namespace Cinema_booking_RPCYYH
         private System.Windows.Forms.Label labelTitle;
         private System.Windows.Forms.Panel panelChairs;
         private System.Windows.Forms.Panel panelStairs1;
+        private System.Windows.Forms.Panel panelStairs2;
     }
 }

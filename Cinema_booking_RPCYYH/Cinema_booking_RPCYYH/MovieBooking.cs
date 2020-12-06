@@ -53,6 +53,14 @@ namespace Cinema_booking_RPCYYH
                 panelStairs1.Controls.Add(stair);
                 
             }
+
+            for (int i = 0; i < 15; i++)
+            {
+                Stairs stair = new Stairs(Color.Gray);
+                stair.Top = i * stair.Height + i * 2;
+                panelStairs2.Controls.Add(stair);
+
+            }
         }
 
         private void createCinemaHall()
@@ -176,10 +184,7 @@ namespace Cinema_booking_RPCYYH
             }
         }
 
-        private void panelStairs1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
+        
     }
 }
 
