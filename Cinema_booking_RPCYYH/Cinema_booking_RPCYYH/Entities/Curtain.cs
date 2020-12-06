@@ -29,9 +29,9 @@ namespace Cinema_booking_RPCYYH.Entities
             Image imageFile = Image.FromFile("images/curtain.png");
             graphics.DrawImage(imageFile, new Rectangle(0, 0, Width, Height));
         }
-        public Curtain CreateNewCurtain()
+        /*public Curtain CreateNewCurtain()
         {
             return new Curtain();
-        }
+        }*/
     }
 }

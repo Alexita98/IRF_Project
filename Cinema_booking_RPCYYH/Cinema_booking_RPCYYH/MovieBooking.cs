@@ -53,6 +53,9 @@ namespace Cinema_booking_RPCYYH
 
             Curtain curtain = new Curtain();
             panelChairs.Controls.Add(curtain);
+
+            Canvas canvas = new Canvas(Color.Black);
+            panelChairs.Controls.Add(canvas);
      
         }
 

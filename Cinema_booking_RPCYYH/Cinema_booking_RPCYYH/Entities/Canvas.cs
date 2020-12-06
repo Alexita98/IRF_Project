@@ -14,8 +14,9 @@ namespace Cinema_booking_RPCYYH.Entities
         public Canvas(Color color)
         {
             AutoSize = false;
-            Width = 50;
-            Height = 50;
+            Width = 400;
+            Height = 100;
+            Left = 50;
             CanvasColor = new SolidBrush(color);
 
             Paint += Canvas_Paint;
@@ -28,15 +29,16 @@ namespace Cinema_booking_RPCYYH.Entities
 
         void DrawImage(Graphics graphics)
         {
-            graphics.FillEllipse(CanvasColor, 0, 0, Width, Height);
+            graphics.FillRectangle(CanvasColor, 0, 0, Width, Height);
         }
 
-        public Color CanvasColor1 { get; set; }
+        
+        /*public Color CanvasColor1 { get; set; }
 
         public Canvas CreateNew()
         {
             return new Canvas(CanvasColor1);
-        }
+        }*/
 
 
     }
