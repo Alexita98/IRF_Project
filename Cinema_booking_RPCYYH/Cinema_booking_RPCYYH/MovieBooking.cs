@@ -16,16 +16,18 @@ namespace Cinema_booking_RPCYYH
 
         //CinemaEntities context = new CinemaEntities();
         CinemaEntities1 context = new CinemaEntities1();
-        List<Chair> seats = new List<Chair>();
+        //List<Chair> seats = new List<Chair>();
+        List<Seat> bookedSeats = new List<Seat>();
         List<Seat> db_seats = new List<Seat>();
-        private Chair actualChair;
+        //private Chair actualChair;
+        private Seat actualChair;
         
 
         public MovieBooking(int selectedShowID, string selectedMovieName, DateTime selectedShowTime, int countFreeSeats)
         {
             InitializeComponent();
             createCinemaHall();
-            LoadChares();
+            LoadChares2(selectedShowID);
             ChairNumbers();
 
             txtMovie.Text = selectedMovieName;
@@ -97,7 +99,7 @@ namespace Cinema_booking_RPCYYH
             }
         }
 
-
+        /*
         private void LoadChares()
         {
             //int i = 0;
@@ -146,6 +148,32 @@ namespace Cinema_booking_RPCYYH
                 
             }
             
+        }*/
+
+        private void LoadChares2(int selShowID)
+        {
+  
+            //bookedSeats.Clear();
+            //bookedSeats = context.Seats.ToList();
+
+            var bookedSeats = (from x in context.Tickets
+                               where x.Movie_Show_FK==selShowID
+                               select x.Seat_FK).ToList();
+
+            foreach (var seat in bookedSeats)
+            {
+                
+                foreach (var chall in panelChairs.Controls.OfType<CinemaHall>())
+                {
+                     if (chall.buttonIndex == seat)
+                     {
+                            chall.BackColor = Color.Red;
+                     }
+                }
+
+                
+
+            }
         }
 
         private void btnBack_Click(object sender, EventArgs e)
@@ -169,7 +197,9 @@ namespace Cinema_booking_RPCYYH
             
             foreach (var sf in panelChairs.Controls.OfType<CinemaHall>())
             {
-                actualChair = seats[i];
+                db_seats = context.Seats.ToList();
+                actualChair = db_seats[i];
+                //actualChair = seats[i];
                 sf.Value = int.Parse(actualChair.SeatNumber.ToString());
                 //sf.Active = sf.Value == 0; //ha a sudokuField=0 --> Active=false 
                 i++;
