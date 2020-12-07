@@ -16,31 +16,23 @@ namespace Cinema_booking_RPCYYH
 
         //CinemaEntities context = new CinemaEntities();
         CinemaEntities1 context = new CinemaEntities1();
-        //List<Chair> seats = new List<Chair>();
         List<Seat> bookedSeats = new List<Seat>();
         List<Seat> db_seats = new List<Seat>();
-        //private Chair actualChair;
         private Seat actualChair;
+        private string selectedMovieName2;
+        private DateTime selectedShowTime2;
         
 
         public MovieBooking(int selectedShowID, string selectedMovieName, DateTime selectedShowTime, int countFreeSeats)
         {
             InitializeComponent();
-            createCinemaHall();
-            LoadChares2(selectedShowID);
+
+            CreateCinemaHall();
+            LoadChairs1(selectedShowID);
             ChairNumbers();
-
-            txtMovie.Text = selectedMovieName;
-            txtTime.Text = Convert.ToString(selectedShowTime);
-            txtFree.Text = Convert.ToString(countFreeSeats);
-            txtTotal.Text = "57";
-
-            labelMovie.BackColor = System.Drawing.Color.Transparent;
-            labelTime.BackColor = System.Drawing.Color.Transparent;
-            labelFree.BackColor = System.Drawing.Color.Transparent;
-            labelTotal.BackColor = System.Drawing.Color.Transparent;
-            labelTitle.BackColor = System.Drawing.Color.Transparent;
-
+            StairsAdding();
+            TextLabels(selectedMovieName, selectedShowTime, countFreeSeats);
+            
 
             Curtain curtain = new Curtain();
             panelChairs.Controls.Add(curtain);
@@ -48,24 +40,12 @@ namespace Cinema_booking_RPCYYH
             Canvas canvas = new Canvas(Color.Black);
             panelChairs.Controls.Add(canvas);
 
-            for (int i = 0; i < 15; i++)
-            {
-                Stairs stair = new Stairs(Color.Gray);
-                stair.Top = i * stair.Height + i * 2;
-                panelStairs1.Controls.Add(stair);
-                
-            }
+            selectedMovieName2 = selectedMovieName;
+            selectedShowTime2 = selectedShowTime;
 
-            for (int i = 0; i < 15; i++)
-            {
-                Stairs stair = new Stairs(Color.Gray);
-                stair.Top = i * stair.Height + i * 2;
-                panelStairs2.Controls.Add(stair);
-
-            }
         }
 
-        private void createCinemaHall()
+        private void CreateCinemaHall()
         {
             panelChairs.Controls.Clear();
             int row, col, index;
@@ -99,83 +79,73 @@ namespace Cinema_booking_RPCYYH
             }
         }
 
-        /*
-        private void LoadChares()
+        private void LoadChairs1(int selShowID)
         {
-            //int i = 0;
-            seats.Clear();
-            db_seats.Clear();
-
-            db_seats = context.Seats.ToList();
-            
-            foreach (Seat seat in db_seats)
-            {
-                Chair ch = new Chair();
-                ch.SeatNumber = seat.SeatNumber;
-                ch.RowNumber = seat.Row_FK;
-                ch.Index = seat.Seat_ID;
-
-                var occupiedSeat = (from x in context.Tickets
-                                    where x.Seat_FK == ch.Index
-                                    select x.Seat_FK).Any();
-                if (occupiedSeat == true)
-                {
-                    ch.Occupied = true;
-                    var occupantPerson = (from x in context.Tickets
-                                          where x.Seat_FK == seat.SeatNumber
-                                          && x.Booking_FK == x.Booking.Booking_ID
-                                          && x.Booking.Customer_FK == x.Booking.Customer.Customer_ID
-                                          select x.Booking.Customer.Name).FirstOrDefault();
-                    ch.Occupant = occupantPerson;
-
-
-                    foreach (var chall in panelChairs.Controls.OfType<CinemaHall>())
-                    {
-                        //int.Parse(actualChair.SeatNumber.ToString())
-                        if (chall.buttonIndex==int.Parse(seat.Seat_ID.ToString()))
-                        {
-                            chall.BackColor = Color.Red;
-                        }
-                    }
-
-                }
-                else
-                {
-                    ch.Occupied = false;
-                    ch.Occupant = "Free";
-                }
-                seats.Add(ch);
-                
-            }
-            
-        }*/
-
-        private void LoadChares2(int selShowID)
-        {
-  
-            //bookedSeats.Clear();
-            //bookedSeats = context.Seats.ToList();
-
             var bookedSeats = (from x in context.Tickets
                                where x.Movie_Show_FK==selShowID
                                select x.Seat_FK).ToList();
 
             foreach (var seat in bookedSeats)
             {
-                
                 foreach (var chall in panelChairs.Controls.OfType<CinemaHall>())
                 {
                      if (chall.buttonIndex == seat)
                      {
-                            chall.BackColor = Color.Red;
+                        chall.BackColor = Color.Red;
+                        chall.Enabled = false;
                      }
                 }
+            }
+        }
 
-                
+
+        private void ChairNumbers() 
+        {
+            int i = 0;
+            
+            foreach (var sf in panelChairs.Controls.OfType<CinemaHall>())
+            {
+                db_seats.Clear();
+                db_seats = context.Seats.ToList();
+                actualChair = db_seats[i];
+                sf.Value = int.Parse(actualChair.SeatNumber.ToString());
+                //sf.Active = sf.Value == 0; //ha a sudokuField=0 --> Active=false 
+                i++;
+            }
+        }
+
+        private void StairsAdding()
+        {
+            for (int i = 0; i < 15; i++)
+            {
+                Stairs stair = new Stairs(Color.Gray);
+                stair.Top = i * stair.Height + i * 2;
+                panelStairs1.Controls.Add(stair);
+
+            }
+
+            for (int i = 0; i < 15; i++)
+            {
+                Stairs stair = new Stairs(Color.Gray);
+                stair.Top = i * stair.Height + i * 2;
+                panelStairs2.Controls.Add(stair);
 
             }
         }
 
+        private void TextLabels(string selectedMovieName, DateTime selectedShowTime, int countFreeSeats)
+        {
+            txtMovie.Text = selectedMovieName;
+            txtTime.Text = Convert.ToString(selectedShowTime);
+            txtFree.Text = Convert.ToString(countFreeSeats);
+            txtTotal.Text = "57";
+
+            labelMovie.BackColor = System.Drawing.Color.Transparent;
+            labelTime.BackColor = System.Drawing.Color.Transparent;
+            labelFree.BackColor = System.Drawing.Color.Transparent;
+            labelTotal.BackColor = System.Drawing.Color.Transparent;
+            labelTitle.BackColor = System.Drawing.Color.Transparent;
+        }
         private void btnBack_Click(object sender, EventArgs e)
         {
             this.Hide();
@@ -185,36 +155,32 @@ namespace Cinema_booking_RPCYYH
 
         private void btnBook_Click(object sender, EventArgs e)
         {
-            mainPanel.Controls.Clear();
-            UserControl_Information ucI = new UserControl_Information();
-            mainPanel.Controls.Add(ucI);
-            ucI.Dock = DockStyle.Fill;
-        }
+            int[] newBookedSeats = new int[57];
+            int i;
+            i = 0;
+            foreach (var chall in panelChairs.Controls.OfType<CinemaHall>())
+            {
+                if (chall.BackColor == Color.Orange)
+                {
+                    newBookedSeats[i] = chall.buttonIndex;
+                    i++;
+                }
+            }
 
-        private void ChairNumbers() 
-        {
-            int i = 0;
+            if (i>0)
+            {
+                mainPanel.Controls.Clear();
+                UserControl_Information ucI = new UserControl_Information(i, newBookedSeats, selectedMovieName2, selectedShowTime2);
+                mainPanel.Controls.Add(ucI);
+                ucI.Dock = DockStyle.Fill;
+            }
+            else
+            {
+                MessageBox.Show("Válasszon ki legalább 1 széket!");
+            }
             
-            foreach (var sf in panelChairs.Controls.OfType<CinemaHall>())
-            {
-                db_seats = context.Seats.ToList();
-                actualChair = db_seats[i];
-                //actualChair = seats[i];
-                sf.Value = int.Parse(actualChair.SeatNumber.ToString());
-                //sf.Active = sf.Value == 0; //ha a sudokuField=0 --> Active=false 
-                i++;
-            }
         }
 
-        private void BookedChairs()
-        {
-            if (true)
-            {
-
-            }
-        }
-
-        
     }
 }
 
