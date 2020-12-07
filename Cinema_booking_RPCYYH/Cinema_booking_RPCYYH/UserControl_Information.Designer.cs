@@ -132,6 +132,8 @@ namespace Cinema_booking_RPCYYH
             this.textPhone.Name = "textPhone";
             this.textPhone.Size = new System.Drawing.Size(297, 26);
             this.textPhone.TabIndex = 11;
+            this.textPhone.TextChanged += new System.EventHandler(this.textName_TextChanged);
+            this.textPhone.Validating += new System.ComponentModel.CancelEventHandler(this.textPhone_Validating);
             // 
             // textEmail
             // 
@@ -139,6 +141,8 @@ namespace Cinema_booking_RPCYYH
             this.textEmail.Name = "textEmail";
             this.textEmail.Size = new System.Drawing.Size(297, 26);
             this.textEmail.TabIndex = 10;
+            this.textEmail.TextChanged += new System.EventHandler(this.textName_TextChanged);
+            this.textEmail.Validating += new System.ComponentModel.CancelEventHandler(this.textEmail_Validating);
             // 
             // textName
             // 
@@ -146,6 +150,8 @@ namespace Cinema_booking_RPCYYH
             this.textName.Name = "textName";
             this.textName.Size = new System.Drawing.Size(297, 26);
             this.textName.TabIndex = 9;
+            this.textName.TextChanged += new System.EventHandler(this.textName_TextChanged);
+            this.textName.Validating += new System.ComponentModel.CancelEventHandler(this.textName_Validating);
             // 
             // btnFinal
             // 
@@ -273,9 +279,6 @@ namespace Cinema_booking_RPCYYH
         private System.Windows.Forms.Label labelPhone;
         private System.Windows.Forms.Label labelEmail;
         private System.Windows.Forms.Label labelName;
-        private System.Windows.Forms.TextBox textPhone;
-        private System.Windows.Forms.TextBox textEmail;
-        private System.Windows.Forms.TextBox textName;
         private System.Windows.Forms.TextBox textDate;
         private System.Windows.Forms.TextBox textMovie;
         private System.Windows.Forms.Label labelTime;
@@ -287,5 +290,8 @@ namespace Cinema_booking_RPCYYH
         private System.Windows.Forms.TextBox textNumber;
         private System.Windows.Forms.Button btnFinal;
         private System.Windows.Forms.Panel panelPopcorn;
+        public System.Windows.Forms.TextBox textPhone;
+        public System.Windows.Forms.TextBox textEmail;
+        public System.Windows.Forms.TextBox textName;
     }
 }

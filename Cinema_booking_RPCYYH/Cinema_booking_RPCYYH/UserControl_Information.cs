@@ -6,6 +6,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -22,6 +23,7 @@ namespace Cinema_booking_RPCYYH
 
             LabelsTexts(i, selectedMovieName, selectedShowTime);
             MoviewShowID = selectedShowID;
+            chosenSeats2 = new int[57];
 
             for (int n = 0; n < chosenSeats.Length; n++)
             {
@@ -93,7 +95,8 @@ namespace Cinema_booking_RPCYYH
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show(ex.Message);
+                    //MessageBox.Show(ex.Message);
+                    MessageBox.Show("A mentésnél van a hiba");
                 }
             }
             else
@@ -102,6 +105,74 @@ namespace Cinema_booking_RPCYYH
             }
 
             
+        }
+
+        //---------------------VALIDÁLÁS-----------------------------------------
+
+        private void textName_TextChanged(object sender, EventArgs e)
+        {
+            this.Validate();
+        }
+
+        private void textName_Validating(object sender, CancelEventArgs e)
+        {
+            //nem lehet üres
+            Regex regex = new Regex(@"^(?!\s*$).+");
+
+            if (regex.IsMatch(textName.Text))
+            {
+                e.Cancel = false;
+
+                if (!String.IsNullOrWhiteSpace(textName.Text))
+                {
+                    textName.BackColor = Color.LightGreen;
+                }
+                else textName.BackColor = Color.White;
+            }
+            else
+            {
+                e.Cancel = true;
+                textName.BackColor = Color.FromArgb(255, 142, 142);
+            }
+        }
+
+        private void textEmail_Validating(object sender, CancelEventArgs e)
+        {
+            //email szabvány + nem lehet üres
+            Regex regex = new Regex(@"(^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$)");
+            if (regex.IsMatch(textEmail.Text))
+            {
+                e.Cancel = false;
+
+                if (!String.IsNullOrWhiteSpace(textEmail.Text))
+                    textEmail.BackColor = Color.LightGreen;
+                else
+                    textEmail.BackColor = Color.White;
+            }
+            else
+            {
+                e.Cancel = true;
+                textEmail.BackColor = Color.FromArgb(255, 142, 142);
+            }
+        }
+
+        private void textPhone_Validating(object sender, CancelEventArgs e)
+        {
+            Regex regex = new Regex(@"^(\+36|06)(-|/)[0-9]{1,2}-[0-9]{3}-?[0-9]{3,4}$");
+            if (regex.IsMatch(textPhone.Text))
+            {
+                e.Cancel = false;
+
+                if (!String.IsNullOrWhiteSpace(textPhone.Text))
+                    textPhone.BackColor = Color.LightGreen;
+                else
+                    textPhone.BackColor = Color.White;
+            }
+            else
+            {
+                e.Cancel = true;
+                textPhone.BackColor = Color.FromArgb(255, 142, 142);
+            }
         }
     }
 }
