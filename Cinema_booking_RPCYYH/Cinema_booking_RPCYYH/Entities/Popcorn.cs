@@ -15,7 +15,6 @@ namespace Cinema_booking_RPCYYH.Entities
             AutoSize = false;
             Width = 90;
             Height = 130;
-            Left = 10;
 
             Paint += Popcorn_Paint;
         }

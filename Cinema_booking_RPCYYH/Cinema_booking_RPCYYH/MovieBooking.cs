@@ -21,6 +21,8 @@ namespace Cinema_booking_RPCYYH
         private Seat actualChair;
         private string selectedMovieName2;
         private DateTime selectedShowTime2;
+        private int selectedShowID2;
+        //private int[] selectedSeatID2;
         
 
         public MovieBooking(int selectedShowID, string selectedMovieName, DateTime selectedShowTime, int countFreeSeats)
@@ -42,6 +44,7 @@ namespace Cinema_booking_RPCYYH
 
             selectedMovieName2 = selectedMovieName;
             selectedShowTime2 = selectedShowTime;
+            selectedShowID2 = selectedShowID;
 
         }
 
@@ -156,16 +159,21 @@ namespace Cinema_booking_RPCYYH
         private void btnBook_Click(object sender, EventArgs e)
         {
             int i;
+            int[] chosenSeats = new int[57];
             i = 0;
             foreach (var chall in panelChairs.Controls.OfType<CinemaHall>())
             {
-                if (chall.BackColor == Color.Orange) i++;
+                if (chall.BackColor == Color.Orange)
+                {
+                    chosenSeats[i] = chall.buttonIndex;
+                    i++;
+                }
             }
 
             if (i>0)
             {
                 mainPanel.Controls.Clear();
-                UserControl_Information ucI = new UserControl_Information(i, selectedMovieName2, selectedShowTime2);
+                UserControl_Information ucI = new UserControl_Information(i, selectedMovieName2, selectedShowTime2, selectedShowID2, chosenSeats);
                 mainPanel.Controls.Add(ucI);
                 ucI.Dock = DockStyle.Fill;
             }

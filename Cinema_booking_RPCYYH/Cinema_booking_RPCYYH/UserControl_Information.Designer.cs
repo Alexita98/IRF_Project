@@ -35,9 +35,9 @@ namespace Cinema_booking_RPCYYH
             this.labelPhone = new System.Windows.Forms.Label();
             this.labelEmail = new System.Windows.Forms.Label();
             this.labelName = new System.Windows.Forms.Label();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.textPhone = new System.Windows.Forms.TextBox();
+            this.textEmail = new System.Windows.Forms.TextBox();
+            this.textName = new System.Windows.Forms.TextBox();
             this.btnFinal = new System.Windows.Forms.Button();
             this.textDate = new System.Windows.Forms.TextBox();
             this.textMovie = new System.Windows.Forms.TextBox();
@@ -78,9 +78,9 @@ namespace Cinema_booking_RPCYYH
             this.splitContainer1.Panel1.Controls.Add(this.labelPhone);
             this.splitContainer1.Panel1.Controls.Add(this.labelEmail);
             this.splitContainer1.Panel1.Controls.Add(this.labelName);
-            this.splitContainer1.Panel1.Controls.Add(this.textBox3);
-            this.splitContainer1.Panel1.Controls.Add(this.textBox2);
-            this.splitContainer1.Panel1.Controls.Add(this.textBox1);
+            this.splitContainer1.Panel1.Controls.Add(this.textPhone);
+            this.splitContainer1.Panel1.Controls.Add(this.textEmail);
+            this.splitContainer1.Panel1.Controls.Add(this.textName);
             // 
             // splitContainer1.Panel2
             // 
@@ -126,26 +126,26 @@ namespace Cinema_booking_RPCYYH
             this.labelName.TabIndex = 13;
             this.labelName.Text = "Teljes név: *";
             // 
-            // textBox3
+            // textPhone
             // 
-            this.textBox3.Location = new System.Drawing.Point(171, 227);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(297, 26);
-            this.textBox3.TabIndex = 11;
+            this.textPhone.Location = new System.Drawing.Point(171, 227);
+            this.textPhone.Name = "textPhone";
+            this.textPhone.Size = new System.Drawing.Size(297, 26);
+            this.textPhone.TabIndex = 11;
             // 
-            // textBox2
+            // textEmail
             // 
-            this.textBox2.Location = new System.Drawing.Point(171, 169);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(297, 26);
-            this.textBox2.TabIndex = 10;
+            this.textEmail.Location = new System.Drawing.Point(171, 169);
+            this.textEmail.Name = "textEmail";
+            this.textEmail.Size = new System.Drawing.Size(297, 26);
+            this.textEmail.TabIndex = 10;
             // 
-            // textBox1
+            // textName
             // 
-            this.textBox1.Location = new System.Drawing.Point(171, 114);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(297, 26);
-            this.textBox1.TabIndex = 9;
+            this.textName.Location = new System.Drawing.Point(171, 114);
+            this.textName.Name = "textName";
+            this.textName.Size = new System.Drawing.Size(297, 26);
+            this.textName.TabIndex = 9;
             // 
             // btnFinal
             // 
@@ -160,6 +160,7 @@ namespace Cinema_booking_RPCYYH
             this.btnFinal.TabIndex = 18;
             this.btnFinal.Text = "Véglegesítés";
             this.btnFinal.UseVisualStyleBackColor = false;
+            this.btnFinal.Click += new System.EventHandler(this.btnFinal_Click);
             // 
             // textDate
             // 
@@ -272,9 +273,9 @@ namespace Cinema_booking_RPCYYH
         private System.Windows.Forms.Label labelPhone;
         private System.Windows.Forms.Label labelEmail;
         private System.Windows.Forms.Label labelName;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox textPhone;
+        private System.Windows.Forms.TextBox textEmail;
+        private System.Windows.Forms.TextBox textName;
         private System.Windows.Forms.TextBox textDate;
         private System.Windows.Forms.TextBox textMovie;
         private System.Windows.Forms.Label labelTime;
