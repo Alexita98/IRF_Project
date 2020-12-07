@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Cinema_booking_RPCYYH.Entities;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,11 +13,19 @@ namespace Cinema_booking_RPCYYH
 {
     public partial class UserControl_Information : UserControl
     {
-        public UserControl_Information(int i, int[] newBookedSeats, string selectedMovieName, DateTime selectedShowTime)
+        public UserControl_Information(int i, string selectedMovieName, DateTime selectedShowTime)
         {
             InitializeComponent();
 
             LabelsTexts(i, selectedMovieName, selectedShowTime);
+
+            
+            for (int k = 0; k < 4; k++)
+            {
+                Popcorn popcorn = new Popcorn();
+                panelPopcorn.Controls.Add(popcorn);
+                popcorn.Left = k * popcorn.Width + 45;
+            }
 
 
         }
@@ -27,6 +36,8 @@ namespace Cinema_booking_RPCYYH
             textTotal.Text = Convert.ToString(i * 2200);
             textMovie.Text = movie;
             textDate.Text = Convert.ToString(show);
+
+           
 
             labelMovie.BackColor = System.Drawing.Color.Transparent;
             labelTime.BackColor = System.Drawing.Color.Transparent;

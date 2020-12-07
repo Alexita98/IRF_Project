@@ -155,22 +155,17 @@ namespace Cinema_booking_RPCYYH
 
         private void btnBook_Click(object sender, EventArgs e)
         {
-            int[] newBookedSeats = new int[57];
             int i;
             i = 0;
             foreach (var chall in panelChairs.Controls.OfType<CinemaHall>())
             {
-                if (chall.BackColor == Color.Orange)
-                {
-                    newBookedSeats[i] = chall.buttonIndex;
-                    i++;
-                }
+                if (chall.BackColor == Color.Orange) i++;
             }
 
             if (i>0)
             {
                 mainPanel.Controls.Clear();
-                UserControl_Information ucI = new UserControl_Information(i, newBookedSeats, selectedMovieName2, selectedShowTime2);
+                UserControl_Information ucI = new UserControl_Information(i, selectedMovieName2, selectedShowTime2);
                 mainPanel.Controls.Add(ucI);
                 ucI.Dock = DockStyle.Fill;
             }

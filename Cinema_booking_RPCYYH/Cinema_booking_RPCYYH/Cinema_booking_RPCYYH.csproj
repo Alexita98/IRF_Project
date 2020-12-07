@@ -96,6 +96,9 @@
     <Compile Include="Entities\Curtain.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Entities\Popcorn.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Entities\Stairs.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -214,6 +217,9 @@
       <LastGenOutput>Cinema1.cs</LastGenOutput>
     </Content>
     <Content Include="images\curtain.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="images\popcorn.jpeg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Model1.Context.tt">

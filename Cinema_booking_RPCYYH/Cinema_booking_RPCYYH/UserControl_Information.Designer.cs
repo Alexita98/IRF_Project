@@ -32,9 +32,6 @@ namespace Cinema_booking_RPCYYH
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UserControl_Information));
             this.labelTitle = new System.Windows.Forms.Label();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.label6 = new System.Windows.Forms.Label();
-            this.txtBookedSeats = new System.Windows.Forms.RichTextBox();
-            this.label5 = new System.Windows.Forms.Label();
             this.labelPhone = new System.Windows.Forms.Label();
             this.labelEmail = new System.Windows.Forms.Label();
             this.labelName = new System.Windows.Forms.Label();
@@ -51,6 +48,7 @@ namespace Cinema_booking_RPCYYH
             this.labelNumber = new System.Windows.Forms.Label();
             this.labelTitle2 = new System.Windows.Forms.Label();
             this.textNumber = new System.Windows.Forms.TextBox();
+            this.panelPopcorn = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -75,9 +73,7 @@ namespace Cinema_booking_RPCYYH
             // 
             // splitContainer1.Panel1
             // 
-            this.splitContainer1.Panel1.Controls.Add(this.label6);
-            this.splitContainer1.Panel1.Controls.Add(this.txtBookedSeats);
-            this.splitContainer1.Panel1.Controls.Add(this.label5);
+            this.splitContainer1.Panel1.BackColor = System.Drawing.SystemColors.Window;
             this.splitContainer1.Panel1.Controls.Add(this.labelTitle);
             this.splitContainer1.Panel1.Controls.Add(this.labelPhone);
             this.splitContainer1.Panel1.Controls.Add(this.labelEmail);
@@ -102,33 +98,6 @@ namespace Cinema_booking_RPCYYH
             this.splitContainer1.Size = new System.Drawing.Size(982, 555);
             this.splitContainer1.SplitterDistance = 657;
             this.splitContainer1.TabIndex = 9;
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(39, 509);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(407, 20);
-            this.label6.TabIndex = 18;
-            this.label6.Text = "* A lefoglalt székeket az előadás előtti 30 percig foglaljuk";
-            // 
-            // txtBookedSeats
-            // 
-            this.txtBookedSeats.Enabled = false;
-            this.txtBookedSeats.Location = new System.Drawing.Point(171, 283);
-            this.txtBookedSeats.Name = "txtBookedSeats";
-            this.txtBookedSeats.Size = new System.Drawing.Size(297, 96);
-            this.txtBookedSeats.TabIndex = 17;
-            this.txtBookedSeats.Text = "";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(15, 283);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(128, 20);
-            this.label5.TabIndex = 16;
-            this.label5.Text = "Lefoglalt székek:";
             // 
             // labelPhone
             // 
@@ -270,10 +239,19 @@ namespace Cinema_booking_RPCYYH
             this.textNumber.Size = new System.Drawing.Size(157, 26);
             this.textNumber.TabIndex = 12;
             // 
+            // panelPopcorn
+            // 
+            this.panelPopcorn.BackColor = System.Drawing.SystemColors.Window;
+            this.panelPopcorn.Location = new System.Drawing.Point(0, 320);
+            this.panelPopcorn.Name = "panelPopcorn";
+            this.panelPopcorn.Size = new System.Drawing.Size(651, 235);
+            this.panelPopcorn.TabIndex = 16;
+            // 
             // UserControl_Information
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.panelPopcorn);
             this.Controls.Add(this.splitContainer1);
             this.Name = "UserControl_Information";
             this.Size = new System.Drawing.Size(982, 555);
@@ -291,8 +269,6 @@ namespace Cinema_booking_RPCYYH
 
         private System.Windows.Forms.Label labelTitle;
         private System.Windows.Forms.SplitContainer splitContainer1;
-        private System.Windows.Forms.RichTextBox txtBookedSeats;
-        private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label labelPhone;
         private System.Windows.Forms.Label labelEmail;
         private System.Windows.Forms.Label labelName;
@@ -309,6 +285,6 @@ namespace Cinema_booking_RPCYYH
         private System.Windows.Forms.Label labelTitle2;
         private System.Windows.Forms.TextBox textNumber;
         private System.Windows.Forms.Button btnFinal;
-        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Panel panelPopcorn;
     }
 }
