@@ -13,8 +13,6 @@ namespace Cinema_booking_RPCYYH
 {
     public partial class MovieBooking : Form
     {
-
-        //CinemaEntities context = new CinemaEntities();
         CinemaEntities1 context = new CinemaEntities1();
         List<Seat> bookedSeats = new List<Seat>();
         List<Seat> db_seats = new List<Seat>();
@@ -22,7 +20,6 @@ namespace Cinema_booking_RPCYYH
         private string selectedMovieName2;
         private DateTime selectedShowTime2;
         private int selectedShowID2;
-        //private int[] selectedSeatID2;
         
 
         public MovieBooking(int selectedShowID, string selectedMovieName, DateTime selectedShowTime, int countFreeSeats)
@@ -112,7 +109,6 @@ namespace Cinema_booking_RPCYYH
                 db_seats = context.Seats.ToList();
                 actualChair = db_seats[i];
                 sf.Value = int.Parse(actualChair.SeatNumber.ToString());
-                //sf.Active = sf.Value == 0; //ha a sudokuField=0 --> Active=false 
                 i++;
             }
         }
@@ -124,7 +120,6 @@ namespace Cinema_booking_RPCYYH
                 Stairs stair = new Stairs(Color.Gray);
                 stair.Top = i * stair.Height + i * 2;
                 panelStairs1.Controls.Add(stair);
-
             }
 
             for (int i = 0; i < 15; i++)
@@ -132,7 +127,6 @@ namespace Cinema_booking_RPCYYH
                 Stairs stair = new Stairs(Color.Gray);
                 stair.Top = i * stair.Height + i * 2;
                 panelStairs2.Controls.Add(stair);
-
             }
         }
 

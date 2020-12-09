@@ -33,44 +33,16 @@ namespace Cinema_booking_RPCYYH
             }
         }
 
-
-        //public int Value { get; set; }
-
-        private int _value; //propfull tab tab -- > kifejtett property
-        //(a privát változók nevét szokás egy alulvonással kezdeni, hogy elkülönüljenek a metódusokon belül létrehozott változóktól)
+        private int _value; //kifejtett property _ privát változó
+        
         public int Value
         {
             get { return _value; }
             set
             {
                 _value = value;
-
                 this.Text = _value.ToString();
-                
             }
-            //get { return Value; }
-            //set { Value = value; }
         }
-
-
-        /*
-        private bool _active;
-
-        public bool Active
-        {
-            get { return _active; }
-            set
-            {
-                _active = value;
-                if (_active == false)
-                {
-                    
-                }
-                else
-                {
-                    
-                }
-            }
-        }*/
     }
 }

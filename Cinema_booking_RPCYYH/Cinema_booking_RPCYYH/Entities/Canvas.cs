@@ -31,15 +31,5 @@ namespace Cinema_booking_RPCYYH.Entities
         {
             graphics.FillRectangle(CanvasColor, 0, 0, Width, Height);
         }
-
-        
-        /*public Color CanvasColor1 { get; set; }
-
-        public Canvas CreateNew()
-        {
-            return new Canvas(CanvasColor1);
-        }*/
-
-
     }
 }

@@ -23,8 +23,6 @@ namespace Cinema_booking_RPCYYH
 
             cboxMovie.DataSource = (from x in context.Movies
                                     select x).ToList();
-            /*cboxYear.DataSource = (from x in context.Movies
-                                   select x.PublishYear).ToList();*/
 
             System.Object[] ItemObject = new System.Object[2];
             ItemObject[0] = "Megjelenési év";
@@ -137,8 +135,6 @@ namespace Cinema_booking_RPCYYH
                 MessageBox.Show("A moziműsor sikeresen mentésre került");
             }
         }
-
-       
 
         private void YearFilter()
         {

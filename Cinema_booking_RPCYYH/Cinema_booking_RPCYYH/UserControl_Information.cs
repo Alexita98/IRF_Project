@@ -31,16 +31,12 @@ namespace Cinema_booking_RPCYYH
                 chosenSeats2[n] = chosenSeats[n];
             }
             
-
-            
             for (int k = 0; k < 4; k++)
             {
                 Popcorn popcorn = new Popcorn();
                 panelPopcorn.Controls.Add(popcorn);
                 popcorn.Left = k * popcorn.Width + 55;
             }
-
-
         }
 
         private void LabelsTexts(int i, string movie, DateTime show)
@@ -69,7 +65,7 @@ namespace Cinema_booking_RPCYYH
                 cus.Email = textEmail.Text;
                 context.Customers.Add(cus);
  
-                MessageBox.Show($"Customer_ID (6): { cus.Customer_ID.ToString()} CustomerName: {cus.Name.ToString()} Email: {cus.Email.ToString()} Phone: {cus.Phone.ToString()}");
+                //MessageBox.Show($"Customer_ID (6): { cus.Customer_ID.ToString()} CustomerName: {cus.Name.ToString()} Email: {cus.Email.ToString()} Phone: {cus.Phone.ToString()}");
 
                 try
                 {
@@ -77,27 +73,22 @@ namespace Cinema_booking_RPCYYH
                 }
                 catch (Exception ex)
                 {
-                    //MessageBox.Show(ex.Message);
-                    MessageBox.Show("A customer mentésnél van a hiba: " + ex.Message);
+                    MessageBox.Show(ex.Message);
                 }
-                //context.Customers.Load();
-
+                
                 Booking book = new Booking();
                 book.BookingDate = DateTime.Now;
                 book.Customer_FK = cus.Customer_ID;
                 context.Bookings.Add(book);
-                MessageBox.Show($"Customer_FK (6): {book.Customer_FK.ToString()} Booking_ID(6): { book.Booking_ID.ToString()} BookingDate: {book.BookingDate.ToString()}");
+                //MessageBox.Show($"Customer_FK (6): {book.Customer_FK.ToString()} Booking_ID(6): { book.Booking_ID.ToString()} BookingDate: {book.BookingDate.ToString()}");
                 try
                 {
                     context.SaveChanges();
                 }
                 catch (Exception ex)
                 {
-                    //MessageBox.Show(ex.Message);
-                    MessageBox.Show("A booking mentésnél van a hiba: " + ex.Message);
+                    MessageBox.Show(ex.Message);
                 }
-                context.Bookings.Load();
-
 
                 for (int k = 0; k < chosenSeats2.Length; k++)
                 {
@@ -107,8 +98,7 @@ namespace Cinema_booking_RPCYYH
                     tick.Movie_Show_FK = MoviewShowID;
                     tick.Seat_FK = chosenSeats2[k];
                     context.Tickets.Add(tick);
-                    //MessageBox.Show(tick.Price.ToString());
-                    MessageBox.Show($"Lefoglalt jegyek:{chosenSeats2.Length.ToString()} BookingFK (6): {tick.Booking_FK.ToString()} Movie_Show_FK (3): {tick.Movie_Show_FK.ToString()} Seat_FK (61): {tick.Seat_FK.ToString()} Ticket_ID (13): {tick.Ticket_ID.ToString()} ");
+                   //MessageBox.Show($"Lefoglalt jegyek:{chosenSeats2.Length.ToString()} BookingFK (6): {tick.Booking_FK.ToString()} Movie_Show_FK (3): {tick.Movie_Show_FK.ToString()} Seat_FK (61): {tick.Seat_FK.ToString()} Ticket_ID (13): {tick.Ticket_ID.ToString()} ");
                 }
                 
                 
@@ -116,6 +106,11 @@ namespace Cinema_booking_RPCYYH
                 {
                     context.SaveChanges();
                     MessageBox.Show("A foglalás sikeres, szeretettel várjuk!");
+
+                    context.Customers.Load();
+                    context.Bookings.Load();
+                    context.Tickets.Load();
+
                     this.Hide();
                     Form1 form1 = new Form1();
                     form1.ShowDialog();

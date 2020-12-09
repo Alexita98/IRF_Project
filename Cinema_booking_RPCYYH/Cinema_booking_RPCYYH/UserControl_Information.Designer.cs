@@ -49,6 +49,7 @@ namespace Cinema_booking_RPCYYH
             this.labelTitle2 = new System.Windows.Forms.Label();
             this.textNumber = new System.Windows.Forms.TextBox();
             this.panelPopcorn = new System.Windows.Forms.Panel();
+            this.labelFormat = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -74,6 +75,7 @@ namespace Cinema_booking_RPCYYH
             // splitContainer1.Panel1
             // 
             this.splitContainer1.Panel1.BackColor = System.Drawing.SystemColors.Window;
+            this.splitContainer1.Panel1.Controls.Add(this.labelFormat);
             this.splitContainer1.Panel1.Controls.Add(this.labelTitle);
             this.splitContainer1.Panel1.Controls.Add(this.labelPhone);
             this.splitContainer1.Panel1.Controls.Add(this.labelEmail);
@@ -254,6 +256,15 @@ namespace Cinema_booking_RPCYYH
             this.panelPopcorn.Size = new System.Drawing.Size(651, 235);
             this.panelPopcorn.TabIndex = 16;
             // 
+            // labelFormat
+            // 
+            this.labelFormat.AutoSize = true;
+            this.labelFormat.Location = new System.Drawing.Point(171, 260);
+            this.labelFormat.Name = "labelFormat";
+            this.labelFormat.Size = new System.Drawing.Size(203, 20);
+            this.labelFormat.TabIndex = 16;
+            this.labelFormat.Text = "Formátum: 06/30-000-0000";
+            // 
             // UserControl_Information
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -293,5 +304,6 @@ namespace Cinema_booking_RPCYYH
         public System.Windows.Forms.TextBox textPhone;
         public System.Windows.Forms.TextBox textEmail;
         public System.Windows.Forms.TextBox textName;
+        private System.Windows.Forms.Label labelFormat;
     }
 }
