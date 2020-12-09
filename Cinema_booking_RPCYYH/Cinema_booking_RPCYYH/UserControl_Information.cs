@@ -122,8 +122,7 @@ namespace Cinema_booking_RPCYYH
                 }
                 catch (Exception ex)
                 {
-                    //MessageBox.Show(ex.Message);
-                    MessageBox.Show("A ticket mentésnél van a hiba: " + ex.Message);
+                    MessageBox.Show(ex.Message);
                 }
             }
             else

@@ -108,7 +108,6 @@
     <Compile Include="MovieBooking.Designer.cs">
       <DependentUpon>MovieBooking.cs</DependentUpon>
     </Compile>
-    <Compile Include="Entities\Chair.cs" />
     <Compile Include="Entities\CinemaHall.cs">
       <SubType>Component</SubType>
     </Compile>
