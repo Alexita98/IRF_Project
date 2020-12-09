@@ -44,7 +44,7 @@ namespace Cinema_booking_RPCYYH
                                             Megjelenés = x.Movie.PublishYear,
                                             Filmhossz = x.Movie.DurationMinutes
                                         }).ToList();
-            Filters();
+            Filters(false);
            
             GetFreeSeats();
         }
@@ -83,7 +83,7 @@ namespace Cinema_booking_RPCYYH
 
         private int CountFreeSeats(Movie selectedMovie, DateTime selectedTime)
         {
-            int freeSeats = 57 - (from x in context.Tickets
+            int freeSeats = 62 - (from x in context.Tickets
                                   where x.Movie_Show.Movie.Movie_ID == selectedMovie.Movie_ID
                                   && x.Movie_Show_FK == x.Movie_Show.Movie_Show_ID
                                   && x.Movie_Show.StartTime == selectedTime
@@ -154,6 +154,7 @@ namespace Cinema_booking_RPCYYH
                                             Megjelenés = x.Movie.PublishYear,
                                             Filmhossz = x.Movie.DurationMinutes
                                         }).ToList();
+            //dataGridView1.Invalidate();
         }
         private void MovieFilter()
         {
@@ -172,17 +173,20 @@ namespace Cinema_booking_RPCYYH
         }
         
 
-        private void Filters()
+        private void Filters(bool isFilterSelected)
         {
             if (Convert.ToString(cBoxFilters.SelectedItem) == "Megjelenési év")
             {
+                if (!isFilterSelected)
                 cboxYear.DataSource = (from x in context.Movies
-                                       select x.PublishYear).ToList();
+                                       orderby x.PublishYear
+                                       select x.PublishYear).Distinct().ToList();
                 YearFilter();
             }
             else if (Convert.ToString(cBoxFilters.SelectedItem) == "Film név")
             {
-                cboxYear.DataSource = (from x in context.Movies
+                if (!isFilterSelected)
+                    cboxYear.DataSource = (from x in context.Movies
                                        select x.MovieName).ToList();
                 MovieFilter();
             }
@@ -191,12 +195,12 @@ namespace Cinema_booking_RPCYYH
 
         private void cBoxFilters_SelectedIndexChanged(object sender, EventArgs e)
         {
-            Filters();
+            Filters(false);
         }
         private void cboxYear_SelectedIndexChanged(object sender, EventArgs e)
         {
-            Filters();
-           
+            Filters(true);
+            
         }
     }
 }

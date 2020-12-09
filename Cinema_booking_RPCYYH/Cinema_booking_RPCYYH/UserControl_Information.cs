@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.Entity;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -23,11 +24,11 @@ namespace Cinema_booking_RPCYYH
 
             LabelsTexts(i, selectedMovieName, selectedShowTime);
             MoviewShowID = selectedShowID;
-            chosenSeats2 = new int[57];
+            chosenSeats2 = new int[i];
 
-            for (int n = 0; n < chosenSeats.Length; n++)
+            for (int n = 0; n < chosenSeats2.Length; n++)
             {
-                chosenSeats2[i] = chosenSeats[i];
+                chosenSeats2[n] = chosenSeats[n];
             }
             
 
@@ -49,7 +50,6 @@ namespace Cinema_booking_RPCYYH
             textMovie.Text = movie;
             textDate.Text = Convert.ToString(show);
 
-           
 
             labelMovie.BackColor = System.Drawing.Color.Transparent;
             labelTime.BackColor = System.Drawing.Color.Transparent;
@@ -60,28 +60,55 @@ namespace Cinema_booking_RPCYYH
 
         private void btnFinal_Click(object sender, EventArgs e)
         {
-            Customer cus = new Customer();
-            Booking book = new Booking();
-            Ticket tick = new Ticket();
-
+            
             if (textName.Text != "" && textPhone.Text != "" && textEmail.Text != "")
             {
+                Customer cus = new Customer();
                 cus.Name = textName.Text;
                 cus.Phone = textPhone.Text;
                 cus.Email = textEmail.Text;
                 context.Customers.Add(cus);
+ 
+                MessageBox.Show($"Customer_ID (6): { cus.Customer_ID.ToString()} CustomerName: {cus.Name.ToString()} Email: {cus.Email.ToString()} Phone: {cus.Phone.ToString()}");
 
+                try
+                {
+                    context.SaveChanges();
+                }
+                catch (Exception ex)
+                {
+                    //MessageBox.Show(ex.Message);
+                    MessageBox.Show("A customer mentésnél van a hiba: " + ex.Message);
+                }
+                //context.Customers.Load();
+
+                Booking book = new Booking();
                 book.BookingDate = DateTime.Now;
                 book.Customer_FK = cus.Customer_ID;
                 context.Bookings.Add(book);
+                MessageBox.Show($"Customer_FK (6): {book.Customer_FK.ToString()} Booking_ID(6): { book.Booking_ID.ToString()} BookingDate: {book.BookingDate.ToString()}");
+                try
+                {
+                    context.SaveChanges();
+                }
+                catch (Exception ex)
+                {
+                    //MessageBox.Show(ex.Message);
+                    MessageBox.Show("A booking mentésnél van a hiba: " + ex.Message);
+                }
+                context.Bookings.Load();
+
 
                 for (int k = 0; k < chosenSeats2.Length; k++)
                 {
+                    Ticket tick = new Ticket();
                     tick.Price = 2200;
                     tick.Booking_FK = book.Booking_ID;
                     tick.Movie_Show_FK = MoviewShowID;
                     tick.Seat_FK = chosenSeats2[k];
                     context.Tickets.Add(tick);
+                    //MessageBox.Show(tick.Price.ToString());
+                    MessageBox.Show($"Lefoglalt jegyek:{chosenSeats2.Length.ToString()} BookingFK (6): {tick.Booking_FK.ToString()} Movie_Show_FK (3): {tick.Movie_Show_FK.ToString()} Seat_FK (61): {tick.Seat_FK.ToString()} Ticket_ID (13): {tick.Ticket_ID.ToString()} ");
                 }
                 
                 
@@ -96,7 +123,7 @@ namespace Cinema_booking_RPCYYH
                 catch (Exception ex)
                 {
                     //MessageBox.Show(ex.Message);
-                    MessageBox.Show("A mentésnél van a hiba");
+                    MessageBox.Show("A ticket mentésnél van a hiba: " + ex.Message);
                 }
             }
             else

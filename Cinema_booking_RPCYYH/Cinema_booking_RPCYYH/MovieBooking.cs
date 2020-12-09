@@ -141,7 +141,7 @@ namespace Cinema_booking_RPCYYH
             txtMovie.Text = selectedMovieName;
             txtTime.Text = Convert.ToString(selectedShowTime);
             txtFree.Text = Convert.ToString(countFreeSeats);
-            txtTotal.Text = "57";
+            txtTotal.Text = "62";
 
             labelMovie.BackColor = System.Drawing.Color.Transparent;
             labelTime.BackColor = System.Drawing.Color.Transparent;
@@ -159,7 +159,7 @@ namespace Cinema_booking_RPCYYH
         private void btnBook_Click(object sender, EventArgs e)
         {
             int i;
-            int[] chosenSeats = new int[57];
+            int[] chosenSeats = new int[62];
             i = 0;
             foreach (var chall in panelChairs.Controls.OfType<CinemaHall>())
             {
