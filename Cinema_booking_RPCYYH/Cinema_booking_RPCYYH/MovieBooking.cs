@@ -30,8 +30,7 @@ namespace Cinema_booking_RPCYYH
             LoadChairs1(selectedShowID);
             ChairNumbers();
             StairsAdding();
-            TextLabels(selectedMovieName, selectedShowTime, countFreeSeats);
-            
+            Texts(selectedMovieName, selectedShowTime, countFreeSeats);
 
             Curtain curtain = new Curtain();
             panelChairs.Controls.Add(curtain);
@@ -42,7 +41,6 @@ namespace Cinema_booking_RPCYYH
             selectedMovieName2 = selectedMovieName;
             selectedShowTime2 = selectedShowTime;
             selectedShowID2 = selectedShowID;
-
         }
 
         private void CreateCinemaHall()
@@ -129,20 +127,6 @@ namespace Cinema_booking_RPCYYH
                 panelStairs2.Controls.Add(stair);
             }
         }
-
-        private void TextLabels(string selectedMovieName, DateTime selectedShowTime, int countFreeSeats)
-        {
-            txtMovie.Text = selectedMovieName;
-            txtTime.Text = Convert.ToString(selectedShowTime);
-            txtFree.Text = Convert.ToString(countFreeSeats);
-            txtTotal.Text = "62";
-
-            labelMovie.BackColor = System.Drawing.Color.Transparent;
-            labelTime.BackColor = System.Drawing.Color.Transparent;
-            labelFree.BackColor = System.Drawing.Color.Transparent;
-            labelTotal.BackColor = System.Drawing.Color.Transparent;
-            labelTitle.BackColor = System.Drawing.Color.Transparent;
-        }
         private void btnBack_Click(object sender, EventArgs e)
         {
             this.Hide();
@@ -176,6 +160,28 @@ namespace Cinema_booking_RPCYYH
                 MessageBox.Show("Válasszon ki legalább 1 széket!");
             }
             
+        }
+
+        private void Texts(string selectedMovieName, DateTime selectedShowTime, int countFreeSeats)
+        {
+            labelTitle.Text = Resource1.MB_MainTitle;
+            labelMovie.Text = Resource1.MB_Subtitle1;
+            labelTime.Text = Resource1.MB_Subtitle2;
+            labelTotal.Text = Resource1.MB_Subtitle3;
+            labelFree.Text = Resource1.MB_Subtitle4;
+            btnBook.Text = Resource1.MB_Button1;
+            btnBack.Text = Resource1.MB_Button2;
+
+            txtMovie.Text = selectedMovieName;
+            txtTime.Text = Convert.ToString(selectedShowTime);
+            txtFree.Text = Convert.ToString(countFreeSeats);
+            txtTotal.Text = "62";
+
+            labelMovie.BackColor = System.Drawing.Color.Transparent;
+            labelTime.BackColor = System.Drawing.Color.Transparent;
+            labelFree.BackColor = System.Drawing.Color.Transparent;
+            labelTotal.BackColor = System.Drawing.Color.Transparent;
+            labelTitle.BackColor = System.Drawing.Color.Transparent;
         }
 
     }

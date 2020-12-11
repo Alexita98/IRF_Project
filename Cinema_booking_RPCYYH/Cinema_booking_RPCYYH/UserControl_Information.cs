@@ -22,7 +22,8 @@ namespace Cinema_booking_RPCYYH
         {
             InitializeComponent();
 
-            LabelsTexts(i, selectedMovieName, selectedShowTime);
+            Texts(i, selectedMovieName, selectedShowTime);
+
             MoviewShowID = selectedShowID;
             chosenSeats2 = new int[i];
 
@@ -39,13 +40,24 @@ namespace Cinema_booking_RPCYYH
             }
         }
 
-        private void LabelsTexts(int i, string movie, DateTime show)
+        private void Texts(int i, string movie, DateTime show)
         {
+            labelTitle.Text = Resource1.UC_MainTitle1;
+            labelTitle2.Text = Resource1.UC_MainTitle2;
+            labelName.Text = Resource1.UC_Subtitle1;
+            labelEmail.Text = Resource1.UC_Subtitle2;
+            labelPhone.Text = Resource1.UC_Subtitle3;
+            labelFormat.Text = Resource1.UC_Subtitle4;
+            labelNumber.Text = Resource1.UC_Subtitle5;
+            labelPrice.Text = Resource1.UC_Subtitle6;
+            labelMovie.Text = Resource1.UC_Subtitle7;
+            labelTime.Text = Resource1.UC_Subtitle8;
+            btnFinal.Text = Resource1.UC_Button1;
+
             textNumber.Text = Convert.ToString(i);
             textTotal.Text = Convert.ToString(i * 2200);
             textMovie.Text = movie;
             textDate.Text = Convert.ToString(show);
-
 
             labelMovie.BackColor = System.Drawing.Color.Transparent;
             labelTime.BackColor = System.Drawing.Color.Transparent;

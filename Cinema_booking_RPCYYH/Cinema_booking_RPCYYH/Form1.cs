@@ -27,10 +27,7 @@ namespace Cinema_booking_RPCYYH
             System.Object[] ItemObject = new System.Object[2];
             ItemObject[0] = "Megjelenési év";
             ItemObject[1] = "Film név";
-
             cBoxFilters.Items.AddRange(ItemObject);
-
-      
 
             dataGridView1.DataSource = (from x in context.Movie_Show
                                         where x.Movie_FK == x.Movie.Movie_ID
@@ -42,8 +39,9 @@ namespace Cinema_booking_RPCYYH
                                             Megjelenés = x.Movie.PublishYear,
                                             Filmhossz = x.Movie.DurationMinutes
                                         }).ToList();
+
+            Texts();
             Filters(false);
-           
             GetFreeSeats();
         }
 
@@ -197,6 +195,17 @@ namespace Cinema_booking_RPCYYH
         {
             Filters(true);
             
+        }
+
+        private void Texts()
+        {
+            label1.Text = Resource1.Form1_MainTitle;
+            label2.Text = Resource1.Form1_Subtitle1;
+            label3.Text = Resource1.Form1_Subtitle2;
+            label4.Text = Resource1.Form1_Subtitle3;
+            label5.Text = Resource1.Form1_Subtitle4;
+            btnSave.Text = Resource1.Form1_Button1;
+            btnSeats.Text = Resource1.Form1_Button2;
         }
     }
 }

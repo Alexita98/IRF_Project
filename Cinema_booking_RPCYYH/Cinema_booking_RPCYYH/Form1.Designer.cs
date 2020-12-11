@@ -31,7 +31,8 @@ namespace Cinema_booking_RPCYYH
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.labelTitel = new System.Windows.Forms.Label();
+            this.btnSave = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
             this.cboxTime = new System.Windows.Forms.ComboBox();
             this.labelSeatNumber = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -39,11 +40,10 @@ namespace Cinema_booking_RPCYYH
             this.label2 = new System.Windows.Forms.Label();
             this.cboxMovie = new System.Windows.Forms.ComboBox();
             this.btnSeats = new System.Windows.Forms.Button();
-            this.cboxYear = new System.Windows.Forms.ComboBox();
-            this.label6 = new System.Windows.Forms.Label();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.btnSave = new System.Windows.Forms.Button();
             this.cBoxFilters = new System.Windows.Forms.ComboBox();
+            this.cboxYear = new System.Windows.Forms.ComboBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -60,7 +60,7 @@ namespace Cinema_booking_RPCYYH
             // 
             this.splitContainer1.Panel1.BackColor = System.Drawing.SystemColors.ButtonShadow;
             this.splitContainer1.Panel1.Controls.Add(this.btnSave);
-            this.splitContainer1.Panel1.Controls.Add(this.labelTitel);
+            this.splitContainer1.Panel1.Controls.Add(this.label1);
             this.splitContainer1.Panel1.Controls.Add(this.cboxTime);
             this.splitContainer1.Panel1.Controls.Add(this.labelSeatNumber);
             this.splitContainer1.Panel1.Controls.Add(this.label4);
@@ -74,22 +74,37 @@ namespace Cinema_booking_RPCYYH
             this.splitContainer1.Panel2.BackColor = System.Drawing.SystemColors.Control;
             this.splitContainer1.Panel2.Controls.Add(this.cBoxFilters);
             this.splitContainer1.Panel2.Controls.Add(this.cboxYear);
-            this.splitContainer1.Panel2.Controls.Add(this.label6);
+            this.splitContainer1.Panel2.Controls.Add(this.label5);
             this.splitContainer1.Panel2.Controls.Add(this.dataGridView1);
             this.splitContainer1.Size = new System.Drawing.Size(909, 447);
             this.splitContainer1.SplitterDistance = 294;
             this.splitContainer1.TabIndex = 0;
             // 
-            // labelTitel
+            // btnSave
             // 
-            this.labelTitel.AutoSize = true;
-            this.labelTitel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.labelTitel.ForeColor = System.Drawing.Color.Maroon;
-            this.labelTitel.Location = new System.Drawing.Point(3, 13);
-            this.labelTitel.Name = "labelTitel";
-            this.labelTitel.Size = new System.Drawing.Size(288, 29);
-            this.labelTitel.TabIndex = 15;
-            this.labelTitel.Text = "BlahaMozi Jegyfoglalás";
+            this.btnSave.BackColor = System.Drawing.SystemColors.ControlText;
+            this.btnSave.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Gold;
+            this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSave.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.btnSave.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.btnSave.Location = new System.Drawing.Point(54, 302);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(200, 51);
+            this.btnSave.TabIndex = 16;
+            this.btnSave.Text = "Moziműsor mentése";
+            this.btnSave.UseVisualStyleBackColor = false;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label1.ForeColor = System.Drawing.Color.Maroon;
+            this.label1.Location = new System.Drawing.Point(3, 13);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(288, 29);
+            this.label1.TabIndex = 15;
+            this.label1.Text = "BlahaMozi Jegyfoglalás";
             // 
             // cboxTime
             // 
@@ -98,7 +113,6 @@ namespace Cinema_booking_RPCYYH
             this.cboxTime.Name = "cboxTime";
             this.cboxTime.Size = new System.Drawing.Size(234, 28);
             this.cboxTime.TabIndex = 10;
-            this.cboxTime.Text = "Iőpontok";
             this.cboxTime.SelectedIndexChanged += new System.EventHandler(this.cboxTime_SelectedIndexChanged);
             // 
             // labelSeatNumber
@@ -147,7 +161,6 @@ namespace Cinema_booking_RPCYYH
             this.cboxMovie.Name = "cboxMovie";
             this.cboxMovie.Size = new System.Drawing.Size(234, 28);
             this.cboxMovie.TabIndex = 9;
-            this.cboxMovie.Text = "Filmek";
             this.cboxMovie.SelectedIndexChanged += new System.EventHandler(this.cboxMovie_SelectedIndexChanged);
             // 
             // btnSeats
@@ -165,6 +178,16 @@ namespace Cinema_booking_RPCYYH
             this.btnSeats.UseVisualStyleBackColor = false;
             this.btnSeats.Click += new System.EventHandler(this.btnSeats_Click);
             // 
+            // cBoxFilters
+            // 
+            this.cBoxFilters.FormattingEnabled = true;
+            this.cBoxFilters.Location = new System.Drawing.Point(61, 53);
+            this.cBoxFilters.Name = "cBoxFilters";
+            this.cBoxFilters.Size = new System.Drawing.Size(158, 28);
+            this.cBoxFilters.TabIndex = 13;
+            this.cBoxFilters.Text = "Filters";
+            this.cBoxFilters.SelectedIndexChanged += new System.EventHandler(this.cBoxFilters_SelectedIndexChanged);
+            // 
             // cboxYear
             // 
             this.cboxYear.FormattingEnabled = true;
@@ -174,14 +197,14 @@ namespace Cinema_booking_RPCYYH
             this.cboxYear.TabIndex = 11;
             this.cboxYear.SelectedIndexChanged += new System.EventHandler(this.cboxYear_SelectedIndexChanged);
             // 
-            // label6
+            // label5
             // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(57, 33);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(63, 20);
-            this.label6.TabIndex = 12;
-            this.label6.Text = "Szűrők:";
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(57, 33);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(63, 20);
+            this.label5.TabIndex = 12;
+            this.label5.Text = "Szűrők:";
             // 
             // dataGridView1
             // 
@@ -192,31 +215,6 @@ namespace Cinema_booking_RPCYYH
             this.dataGridView1.RowTemplate.Height = 28;
             this.dataGridView1.Size = new System.Drawing.Size(493, 307);
             this.dataGridView1.TabIndex = 10;
-            // 
-            // btnSave
-            // 
-            this.btnSave.BackColor = System.Drawing.SystemColors.ControlText;
-            this.btnSave.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Gold;
-            this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSave.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.btnSave.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.btnSave.Location = new System.Drawing.Point(54, 302);
-            this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(200, 51);
-            this.btnSave.TabIndex = 16;
-            this.btnSave.Text = "Moziműsor mentése";
-            this.btnSave.UseVisualStyleBackColor = false;
-            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
-            // 
-            // cBoxFilters
-            // 
-            this.cBoxFilters.FormattingEnabled = true;
-            this.cBoxFilters.Location = new System.Drawing.Point(61, 53);
-            this.cBoxFilters.Name = "cBoxFilters";
-            this.cBoxFilters.Size = new System.Drawing.Size(158, 28);
-            this.cBoxFilters.TabIndex = 13;
-            this.cBoxFilters.Text = "Filters";
-            this.cBoxFilters.SelectedIndexChanged += new System.EventHandler(this.cBoxFilters_SelectedIndexChanged);
             // 
             // Form1
             // 
@@ -252,9 +250,9 @@ namespace Cinema_booking_RPCYYH
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ComboBox cboxYear;
-        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label5;
         private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.Label labelTitel;
+        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.ComboBox cBoxFilters;
     }
